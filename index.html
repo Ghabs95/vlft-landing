@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velofit Studio — AI Biomechanics & Bike Fitting in WebAssembly</title>
+  
+  <!-- SEO & Social Meta Tags -->
+  <meta name="description" content="Professional bike fitting and biomechanical analysis in your browser. AI video pose kinematics, 2D cockpit vector simulator, and clinical diagnostics powered by Rust WebAssembly. 100% private.">
+  <meta name="keywords" content="bike fit, bike fitting, biomechanics, cycling, position, saddle height, knee angle, cockpit simulator, Retul, WebAssembly, MediaPipe">
+  <meta property="og:title" content="Velofit Studio — Precision Bike Fitting in WebAssembly">
+  <meta property="og:description" content="AI video pose tracking, 2D vector cockpit trigonometry, and deterministic clinical bike fit diagnostics. Zero cloud uploads.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://velofit.studio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0B1116">
+
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-logo">🚴</div>
+        <div class="brand-text">
+          <span class="brand-kicker" id="navKicker">STUDIO BIOMECCANICO</span>
+          <span class="brand-title">VELOFIT STUDIO</span>
+        </div>
+      </a>
+
+      <div class="nav-menu" id="navMenu">
+        <a href="#features" class="nav-link" id="navFeatures">Funzionalità</a>
+        <a href="#how-it-works" class="nav-link" id="navHow">Come Funziona</a>
+        <a href="#science" class="nav-link" id="navScience">Letteratura</a>
+        <a href="#faq" class="nav-link" id="navFaq">FAQ</a>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switch" role="group" aria-label="Lingua / Language">
+          <button id="langIT" class="lang-btn active" aria-pressed="true">🇮🇹 IT</button>
+          <button id="langEN" class="lang-btn" aria-pressed="false">🇬🇧 EN</button>
+        </div>
+
+        <!-- Launch App CTA -->
+        <a href="https://app.velofit.studio" class="btn btn-primary" id="btnNavLaunch">
+          <span id="btnNavLaunchText">Apri Studio</span> <span class="arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO SECTION ===================== -->
+  <header class="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span id="heroBadgeText">🦀 Motore Rust WebAssembly • 100% Privacy Locale</span>
+      </div>
+
+      <h1 class="hero-title" id="heroTitle">
+        Precisione Biomeccanica per <span class="text-gradient">Ogni Pedalata</span>
+      </h1>
+
+      <p class="hero-subtitle" id="heroSubtitle">
+        Tracciamento cinematico video con intelligenza artificiale, simulatore vettoriale del cockpit e motore diagnostico clinico. Senza caricare i tuoi video nel cloud e senza costosi sensori 3D.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://app.velofit.studio" class="btn btn-primary btn-lg" id="btnHeroLaunch">
+          <span id="btnHeroLaunchText">Avvia Velofit Studio Gratis</span> <span class="arrow">↗</span>
+        </a>
+        <a href="#features" class="btn btn-secondary btn-lg" id="btnHeroExplore">
+          <span id="btnHeroExploreText">Esplora le Funzionalità</span> ↓
+        </a>
+      </div>
+
+      <!-- App Interface Interactive Mockup / Preview -->
+      <div class="hero-preview">
+        <div class="preview-window">
+          <div class="preview-header">
+            <div class="window-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="window-title">app.velofit.studio — Video & Kinematics Engine</div>
+            <div class="window-pill">60 FPS • LIVE WASM</div>
+          </div>
+
+          <div class="preview-body">
+            <!-- Simulated Video & Pose Landmarks Screen -->
+            <div class="preview-video-box">
+              <svg viewBox="0 0 600 360" class="simulated-pose-svg">
+                <!-- Grid background -->
+                <defs>
+                  <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+                
+                <!-- Bike outline ghost -->
+                <circle cx="120" cy="270" r="50" stroke="#374151" stroke-width="1.5" fill="none" opacity="0.4"/>
+                <circle cx="480" cy="270" r="50" stroke="#374151" stroke-width="1.5" fill="none" opacity="0.4"/>
+                <path d="M120 270 L250 270 L340 150 L420 150 L480 270 M250 270 L320 150 L420 150 M320 150 L310 115 M300 110 L340 110 M420 150 L440 130 L450 140" stroke="#4B5563" stroke-width="2" fill="none" opacity="0.5"/>
+
+                <!-- Rider Kinematic Skeleton -->
+                <!-- Ankle to Knee to Hip (Leg at BDC) -->
+                <line x1="260" y1="280" x2="315" y2="205" stroke="#E5B111" stroke-width="3.5" />
+                <line x1="315" y1="205" x2="320" y2="120" stroke="#E5B111" stroke-width="3.5" />
+                <!-- Hip to Shoulder (Torso) -->
+                <line x1="320" y1="120" x2="410" y2="85" stroke="#E5B111" stroke-width="3.5" />
+                <!-- Shoulder to Elbow to Wrist (Arm) -->
+                <line x1="410" y1="85" x2="435" y2="115" stroke="#E5B111" stroke-width="3" />
+                <line x1="435" y1="115" x2="445" y2="135" stroke="#E5B111" stroke-width="3" />
+
+                <!-- Joints Dots -->
+                <circle cx="260" cy="280" r="6" fill="#0284C7" stroke="#FFF" stroke-width="2"/>
+                <circle cx="315" cy="205" r="7" fill="#10B981" stroke="#FFF" stroke-width="2"/>
+                <circle cx="320" cy="120" r="6" fill="#0284C7" stroke="#FFF" stroke-width="2"/>
+                <circle cx="410" cy="85" r="6" fill="#0284C7" stroke="#FFF" stroke-width="2"/>
+                <circle cx="435" cy="115" r="6" fill="#10B981" stroke="#FFF" stroke-width="2"/>
+                <circle cx="445" cy="135" r="5" fill="#0284C7" stroke="#FFF" stroke-width="2"/>
+
+                <!-- Angle Arc Knee -->
+                <path d="M 305 218 A 20 20 0 0 1 323 193" fill="none" stroke="#10B981" stroke-width="2"/>
+                <rect x="330" y="195" width="85" height="24" rx="4" fill="rgba(16, 185, 129, 0.9)"/>
+                <text x="372" y="211" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#000" text-anchor="middle">KNEE 143.2°</text>
+
+                <!-- Angle Arc Torso -->
+                <rect x="345" y="80" width="70" height="22" rx="4" fill="rgba(2, 132, 199, 0.9)"/>
+                <text x="380" y="95" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">TORSO 42°</text>
+
+                <!-- Cadence Banner -->
+                <rect x="20" y="20" width="160" height="40" rx="6" fill="rgba(17, 24, 39, 0.85)" stroke="#374151"/>
+                <text x="32" y="38" font-family="'JetBrains Mono', monospace" font-size="10" fill="#9CA3AF">CADENCE DETECTOR</text>
+                <text x="32" y="53" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" fill="#E5B111">88 RPM • BDC LOCKED</text>
+              </svg>
+            </div>
+
+            <!-- Preview Live Side Cards -->
+            <div class="preview-side-cards">
+              <div class="preview-card">
+                <div class="card-label" id="prevCardScoreLbl">INDICE DI IDONEITÀ</div>
+                <div class="card-score-box">
+                  <span class="score-val">94%</span>
+                  <span class="score-badge">OTTIMALE</span>
+                </div>
+                <div class="card-bar"><div class="card-bar-fill" style="width:94%;"></div></div>
+              </div>
+
+              <div class="preview-card">
+                <div class="card-label" id="prevCardCockpitLbl">SIMULATORE COCKPIT</div>
+                <div class="cockpit-delta">
+                  <div>Reach: <b style="color:#EF4444">-7.8 mm</b></div>
+                  <div>Stack: <b style="color:#10B981">+0.9 mm</b></div>
+                </div>
+                <div class="card-sub">Attacco 100mm (-6°) vs 110mm</div>
+              </div>
+
+              <div class="preview-card">
+                <div class="card-label" id="prevCardActionLbl">PIANO D'AZIONE CLINICO</div>
+                <div class="action-item-mini">
+                  <span class="step-num">1</span>
+                  <span>Alza sella +14 mm (Target 143° BDC)</span>
+                </div>
+                <div class="action-item-mini">
+                  <span class="step-num">2</span>
+                  <span>Sella larga 145mm con foro centrale</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== TRUST METRICS BAR ===================== -->
+  <section class="trust-bar">
+    <div class="trust-container">
+      <div class="trust-metric">
+        <div class="metric-number">0 <span class="metric-unit">ms</span></div>
+        <div class="metric-desc" id="mLatency">Latenza Locale in Rust WASM</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-metric">
+        <div class="metric-number">100<span class="metric-unit">%</span></div>
+        <div class="metric-desc" id="mPrivacy">Privacy: Zero Upload Video</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-metric">
+        <div class="metric-number">6</div>
+        <div class="metric-desc" id="mDisciplines">Discipline Bici Supportate</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-metric">
+        <div class="metric-number">5</div>
+        <div class="metric-desc" id="mStandards">Protocolli Clinici Integrati</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6 PILLARS / FEATURES ===================== -->
+  <section class="section" id="features">
+    <div class="section-container">
+      <div class="section-head">
+        <div class="section-kicker" id="featKicker">TECNOLOGIA & FUNZIONALITÀ</div>
+        <h2 class="section-title" id="featTitle">Gli Strumenti per un Posizionamento Perfetto</h2>
+        <p class="section-subtitle" id="featSubtitle">
+          Un'intera suite biomeccanica professionale condensata in una singola applicazione web reattiva e veloce.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon">🎥</div>
+          <h3 class="feature-title" id="f1Title">AI Video Landmark Kinematics</h3>
+          <p class="feature-desc" id="f1Desc">
+            Tracciamento in tempo reale a 60 FPS degli angoli articolari: estensione ginocchio, inclinazione busto, apertura spalla e gomito. Calcolo automatico della cadenza e rilevamento millimetrico del punto morto inferiore (BDC).
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon">📐</div>
+          <h3 class="feature-title" id="f2Title">Simulatore Vettoriale Cockpit 2D</h3>
+          <p class="feature-desc" id="f2Desc">
+            Trigonometria pura a 2 dimensioni che calcola con precisione millimetrica la variazione di Reach e Stack al manubrio in base ad angolo sterzo, spessori, lunghezza e inclinazione dell'attacco manubrio.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon">🩺</div>
+          <h3 class="feature-title" id="f3Title">Motore Diagnostico Multi-Disciplina</h3>
+          <p class="feature-desc" id="f3Desc">
+            Algoritmi clinici non distorti tarati su 6 discipline: Strada (Race & Endurance), Gravel, MTB XC, MTB Enduro, Crono/Triathlon e Cicloturismo. Produce un Indice di Idoneità e un piano d'azione prioritario 1-2-3.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon">⚖️</div>
+          <h3 class="feature-title" id="f4Title">Player Dual Video Sincronizzato</h3>
+          <p class="feature-desc" id="f4Desc">
+            Confronta i tuoi video di pedalata Prima vs Dopo. Il sistema sincronizza la fase al BDC per visualizzare fianco a fianco la stabilità del bacino e la distensione della gamba a parità di pedalata.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div class="feature-icon">🦀</div>
+          <h3 class="feature-title" id="f5Title">Core Rust WebAssembly Nativo</h3>
+          <p class="feature-desc" id="f5Desc">
+            Tutte le formule matematiche e gli alberi decisionali sono compilati in binario WebAssembly (`.wasm`). Esecuzione a velocità nativa della CPU, 100% offline e protetto contro ispezione.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3 class="feature-title" id="f6Title">Dossier Markdown & JSON Portabile</h3>
+          <p class="feature-desc" id="f6Desc">
+            Importa ed esporta la tua scheda completa in formato Markdown o JSON. Tieni traccia dei cambiamenti uscita dopo uscita con il Registro Modifiche integrato.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCIENCE & LITERATURE ===================== -->
+  <section class="section section-dark" id="science">
+    <div class="section-container">
+      <div class="section-head">
+        <div class="section-kicker" id="sciKicker">RIGORE CLINICO & BIOMECCANICA</div>
+        <h2 class="section-title" id="sciTitle">Basato sulla Letteratura Scientifica</h2>
+        <p class="section-subtitle" id="sciSubtitle">
+          Nessuna congettura empirica casuale. Gli algoritmi di Velofit Studio applicano i protocolli clinici internazionalmente riconosciuti.
+        </p>
+      </div>
+
+      <div class="science-grid">
+        <div class="science-card">
+          <div class="science-tag">PROTOCOLLO HOLMES</div>
+          <h4>Estensione Ginocchio 140°–146° al BDC</h4>
+          <p>
+            Al punto morto inferiore, una flessione inferiore a 138° crea sovraccarico patellofemorale rotuleo, mentre un'estensione oltre 148° stira i muscoli ischiocrurali provocando il basculamento laterale del bacino.
+          </p>
+        </div>
+
+        <div class="science-card">
+          <div class="science-tag">RATIO RETÜL 1.25 MM/°</div>
+          <h4>Regolazione Sella Millimetrica</h4>
+          <p>
+            Per ogni grado di scostamento rispetto all'angolo target dinamico, il sistema calcola uno spostamento sella proporzionale di 1.25 mm lungo l'asse del tubo piantone.
+          </p>
+        </div>
+
+        <div class="science-card">
+          <div class="science-tag">BODY GEOMETRY (DR. MINKOW)</div>
+          <h4>Larghezza Sella & Ossa Ischiatiche</h4>
+          <p>
+            Sostegno scheletrico calcolato su distanza ischiatica centro-centro +20 mm di margine anatomico, con canale centrale di scarico per preservare il flusso sanguigno del nervo pudendo.
+          </p>
+        </div>
+
+        <div class="science-card">
+          <div class="science-tag">PHIL BURT & STEVE HOGG</div>
+          <h4>Sospensione Articolare & Tacchette</h4>
+          <p>
+            Cockpit configurato per mantenere gomiti a 150°–165° come ammortizzatori fisiologici, con arretramento tacchetta per ridurre la tensione tendinea sull'Achille e sui polpacci.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="section" id="how-it-works">
+    <div class="section-container">
+      <div class="section-head">
+        <div class="section-kicker" id="howKicker">SEMPLICE, PRECISO, IMMEDIATO</div>
+        <h2 class="section-title" id="howTitle">Come Effettuare il Tuo Bike Fit in 3 Passi</h2>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-badge">1</div>
+          <h3 id="step1Title">Registra il Tuo Video</h3>
+          <p id="step1Desc">
+            Posiziona lo smartphone ad altezza anca e registra 20–30 secondi di pedalata sul rullo nella tua posizione abituale.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">2</div>
+          <h3 id="step2Title">Analisi Automatica AI</h3>
+          <p id="step2Desc">
+            Carica il file in Velofit Studio. L'AI rileva la postura, i punti BDC e TDC, e calcola tutti gli angoli articolari in tempo reale.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">3</div>
+          <h3 id="step3Title">Applica il Piano d'Azione</h3>
+          <p id="step3Desc">
+            Ricevi il tuo punteggio e un piano di regolazione 1-2-3 (altezza sella, arretramento, attacco). Applica le modifiche e registra i tuoi feedback.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ACCORDION ===================== -->
+  <section class="section section-dark" id="faq">
+    <div class="section-container">
+      <div class="section-head">
+        <div class="section-kicker" id="faqKicker">DOMANDE FREQUENTI</div>
+        <h2 class="section-title" id="faqTitle">Tutto Quello che Devi Sapere</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary class="faq-question" id="faq1Q">I miei video o i miei dati personali vengono caricati online?</summary>
+          <div class="faq-answer" id="faq1A">
+            <p><strong>Assolutamente no.</strong> Velofit Studio è un'applicazione 100% client-side. Tutti i calcoli di computer vision (MediaPipe) e il motore di calcolo Rust WebAssembly girano localmente sul tuo processore. Nessun fotogramma o dato personale lascia mai il tuo computer o smartphone.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question" id="faq2Q">Ho bisogno di un rullo da allenamento (turbo trainer)?</summary>
+          <div class="faq-answer" id="faq2A">
+            <p>Un rullo (o una cyclette stabile) è l'ideale per registrare una pedalata fluida e costante. Tuttavia, puoi anche utilizzare un cavalletto da officina con ruota sollevata o una ripresa laterale in sicurezza.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question" id="faq3Q">Velofit Studio è gratuito?</summary>
+          <div class="faq-answer" id="faq3A">
+            <p>Sì! L'applicazione web è completamente accessibile e gratuita, dotata di importazione/esportazione in Markdown e simulatore del cockpit completo.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question" id="faq4Q">Quali tipologie di biciclette sono supportate?</summary>
+          <div class="faq-answer" id="faq4A">
+            <p>Tutte le principali discipline: Bici da Corsa (Strada Endurance e Race), Gravel / All-Road, Mountain Bike Cross Country (XC), MTB Trail / Enduro, Crono / Triathlon con prolunghe aero, Ciclocross e Bici Urbana / Cicloturismo.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA BANNER ===================== -->
+  <section class="cta-banner">
+    <div class="cta-container">
+      <h2 class="cta-title" id="ctaTitle">Pronto a Trovare la Tua Posizione Ideale?</h2>
+      <p class="cta-subtitle" id="ctaSubtitle">
+        Inizia subito la tua analisi biomeccanica gratuita in meno di 5 minuti.
+      </p>
+      <a href="https://app.velofit.studio" class="btn btn-primary btn-xl" id="btnCtaLaunch">
+        <span id="btnCtaLaunchText">Apri Velofit Studio Ora</span> <span class="arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="brand">
+          <div class="brand-logo">🚴</div>
+          <div class="brand-text">
+            <span class="brand-title">VELOFIT STUDIO</span>
+          </div>
+        </div>
+        <p class="footer-tagline" id="footerTagline">Suite Biomeccanica & Posizionamento Bici in WebAssembly.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="col-title" id="footColApp">Applicazione</div>
+          <a href="https://app.velofit.studio" id="footLinkApp">Apri Web App</a>
+          <a href="#features" id="footLinkFeat">Funzionalità</a>
+          <a href="#science" id="footLinkSci">Letteratura</a>
+        </div>
+        <div class="footer-col">
+          <div class="col-title" id="footColTech">Tecnologia</div>
+          <a href="https://github.com/Ghabs95/vlft-app" target="_blank" rel="noopener">GitHub (App)</a>
+          <a href="https://github.com/Ghabs95/vlft-landing" target="_blank" rel="noopener">GitHub (Landing)</a>
+          <span>Rust + WebAssembly</span>
+          <span>Google MediaPipe</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 Velofit Studio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="landing.js"></script>
+</body>
+</html>

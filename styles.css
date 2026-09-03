@@ -38,6 +38,46 @@
   --radius-full: 9999px;
 }
 
+/* Light Theme Overrides */
+[data-theme="light"] {
+  --bg-deep: #EEF2F6;
+  --bg-base: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F1F5F9;
+  --bg-hover: #E2E8F0;
+
+  --border-subtle: #E2E8F0;
+  --border-card: #CBD5E1;
+  --border-highlight: #94A3B8;
+
+  --accent-gold: #D97706;
+  --accent-gold-bright: #B45309;
+  --accent-gold-glow: rgba(217, 119, 6, 0.18);
+
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --text-dim: #94A3B8;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(248, 250, 252, 0.9);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="light"] .hero-grid-pattern {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+}
+
+[data-theme="light"] .footer-technical {
+  background: #F1F5F9;
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="light"] .footer-baseline {
+  background: #E2E8F0;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -92,7 +132,7 @@ a {
 .brand-glyph {
   width: 36px;
   height: 36px;
-  background: #111822;
+  background: var(--bg-surface);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-sm);
   display: flex;
@@ -148,7 +188,42 @@ a {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+}
+
+.theme-selector {
+  display: flex;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 2px;
+}
+
+.theme-pill {
+  background: transparent;
+  border: 0;
+  color: var(--text-muted);
+  width: 28px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.theme-pill:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.theme-pill.active {
+  color: var(--accent-gold);
+  background: var(--bg-elevated);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .lang-selector {
@@ -278,7 +353,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #0E141B;
+  background: var(--bg-surface);
   border: 1px solid var(--border-card);
   padding: 5px 12px;
   border-radius: var(--radius-full);
@@ -381,7 +456,7 @@ a {
 }
 
 .stage-topbar {
-  background: #0B0F14;
+  background: var(--bg-surface);
   border-bottom: 1px solid var(--border-subtle);
   padding: 10px 16px;
   display: flex;
@@ -426,7 +501,7 @@ a {
 }
 
 .stage-footer {
-  background: #0B1017;
+  background: var(--bg-surface);
   border-top: 1px solid var(--border-subtle);
   padding: 12px 18px;
   display: flex;
@@ -462,7 +537,7 @@ a {
 }
 
 .section-bordered {
-  background: #080C10;
+  background: var(--bg-deep);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
 }
@@ -532,8 +607,8 @@ a {
 }
 
 .bento-card.bento-primary {
-  background: linear-gradient(135deg, #111822 0%, #0F1620 100%);
-  border-color: #26354A;
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+  border-color: var(--border-card);
 }
 
 .bento-header {
@@ -546,8 +621,8 @@ a {
 .bento-icon-box {
   width: 42px;
   height: 42px;
-  background: #141E2B;
-  border: 1px solid #202D3F;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
@@ -749,7 +824,7 @@ a {
 }
 
 .banner-card {
-  background: linear-gradient(135deg, #121A24 0%, #0E141D 100%);
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
   padding: 60px 40px;

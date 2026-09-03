@@ -42,6 +42,16 @@ const LANDING_I18N = {
       btnEN.setAttribute("aria-pressed", String(isEn));
     }
 
+    // Tooltips for theme selector
+    const btnSys = document.getElementById("themeSystem");
+    const btnLight = document.getElementById("themeLight");
+    const btnDark = document.getElementById("themeDark");
+    if (btnSys && btnLight && btnDark) {
+      btnSys.title = isEn ? "System theme" : "Tema di sistema";
+      btnLight.title = isEn ? "Light theme" : "Tema chiaro";
+      btnDark.title = isEn ? "Dark theme" : "Tema scuro";
+    }
+
     const dict = this.DICTIONARY[this.currentLang] || this.DICTIONARY["it"];
     for (const [id, text] of Object.entries(dict)) {
       const el = document.getElementById(id);
@@ -220,10 +230,81 @@ const LANDING_I18N = {
   }
 };
 
+const THEME_MANAGER = {
+  theme: "system", // "system" | "light" | "dark"
+  mediaQuery: window.matchMedia("(prefers-color-scheme: dark)"),
+
+  init() {
+    try {
+      const saved = localStorage.getItem("vlft_theme");
+      if (saved === "light" || saved === "dark" || saved === "system") {
+        this.theme = saved;
+      } else {
+        this.theme = "system";
+      }
+    } catch (e) {
+      this.theme = "system";
+    }
+    this.apply();
+    this.mediaQuery.addEventListener("change", () => {
+      if (this.theme === "system") {
+        this.apply();
+      }
+    });
+  },
+
+  setTheme(theme) {
+    if (theme !== "system" && theme !== "light" && theme !== "dark") return;
+    this.theme = theme;
+    try {
+      localStorage.setItem("vlft_theme", theme);
+    } catch (e) {}
+    this.apply();
+  },
+
+  apply() {
+    const isDark = this.theme === "dark" || (this.theme === "system" && this.mediaQuery.matches);
+    document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+
+    const btnSys = document.getElementById("themeSystem");
+    const btnLight = document.getElementById("themeLight");
+    const btnDark = document.getElementById("themeDark");
+
+    if (btnSys && btnLight && btnDark) {
+      btnSys.classList.toggle("active", this.theme === "system");
+      btnLight.classList.toggle("active", this.theme === "light");
+      btnDark.classList.toggle("active", this.theme === "dark");
+
+      btnSys.setAttribute("aria-pressed", String(this.theme === "system"));
+      btnLight.setAttribute("aria-pressed", String(this.theme === "light"));
+      btnDark.setAttribute("aria-pressed", String(this.theme === "dark"));
+    }
+
+    this.updateLaunchLinks();
+  },
+
+  updateLaunchLinks() {
+    const appLinks = document.querySelectorAll('a[href*="app.velofit.studio"], a[href*="vlft-app"]');
+    appLinks.forEach(a => {
+      try {
+        const href = a.getAttribute("href");
+        if (!href) return;
+        const [base] = href.split("?");
+        a.setAttribute("href", `${base}?theme=${this.theme}`);
+      } catch (e) {}
+    });
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   LANDING_I18N.init();
   LANDING_I18N.apply();
+  THEME_MANAGER.init();
 
   document.getElementById("langIT")?.addEventListener("click", () => LANDING_I18N.setLanguage("it"));
   document.getElementById("langEN")?.addEventListener("click", () => LANDING_I18N.setLanguage("en"));
+
+  document.getElementById("themeSystem")?.addEventListener("click", () => THEME_MANAGER.setTheme("system"));
+  document.getElementById("themeLight")?.addEventListener("click", () => THEME_MANAGER.setTheme("light"));
+  document.getElementById("themeDark")?.addEventListener("click", () => THEME_MANAGER.setTheme("dark"));
 });

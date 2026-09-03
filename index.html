@@ -3,448 +3,544 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velofit Studio — AI Biomechanics & Bike Fitting in WebAssembly</title>
+  <title>Velofit Studio — Biomechanical Bike Fitting in WebAssembly</title>
   
   <!-- SEO & Social Meta Tags -->
-  <meta name="description" content="Professional bike fitting and biomechanical analysis in your browser. AI video pose kinematics, 2D cockpit vector simulator, and clinical diagnostics powered by Rust WebAssembly. 100% private.">
+  <meta name="description" content="Professional bike fitting and biomechanical analysis in your browser. 60 FPS AI video pose kinematics, 2D vector cockpit simulator, and deterministic clinical diagnostics powered by Rust WebAssembly.">
   <meta name="keywords" content="bike fit, bike fitting, biomechanics, cycling, position, saddle height, knee angle, cockpit simulator, Retul, WebAssembly, MediaPipe">
   <meta property="og:title" content="Velofit Studio — Precision Bike Fitting in WebAssembly">
-  <meta property="og:description" content="AI video pose tracking, 2D vector cockpit trigonometry, and deterministic clinical bike fit diagnostics. Zero cloud uploads.">
+  <meta property="og:description" content="60 FPS AI video pose tracking, 2D vector cockpit trigonometry, and deterministic clinical diagnostics. Zero cloud uploads.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://velofit.studio">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#0B1116">
+  <meta name="theme-color" content="#090D11">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-  <!-- Fonts & Stylesheet -->
+  <!-- Typography: Plus Jakarta Sans for UI + JetBrains Mono for Telemetry -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ===================== NAVIGATION ===================== -->
+  <!-- ===================== TOP NAVIGATION ===================== -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#" class="brand">
-        <div class="brand-logo">🚴</div>
+        <div class="brand-glyph">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5.5" cy="17.5" r="3.5"/>
+            <circle cx="18.5" cy="17.5" r="3.5"/>
+            <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 9l3-3 3 3"/>
+            <path d="M12 17.5V14l4-3 2.5 6.5"/>
+          </svg>
+        </div>
         <div class="brand-text">
-          <span class="brand-kicker" id="navKicker">STUDIO BIOMECCANICO</span>
+          <span class="brand-kicker" id="navKicker">BIOMECHANICAL SUITE</span>
           <span class="brand-title">VELOFIT STUDIO</span>
         </div>
       </a>
 
-      <div class="nav-menu" id="navMenu">
-        <a href="#features" class="nav-link" id="navFeatures">Funzionalità</a>
-        <a href="#how-it-works" class="nav-link" id="navHow">Come Funziona</a>
-        <a href="#science" class="nav-link" id="navScience">Letteratura</a>
+      <div class="nav-links">
+        <a href="#features" class="nav-link" id="navFeatures">Piattaforma</a>
+        <a href="#bento" class="nav-link" id="navBento">Cinematica</a>
+        <a href="#science" class="nav-link" id="navScience">Protocolli Clinici</a>
         <a href="#faq" class="nav-link" id="navFaq">FAQ</a>
       </div>
 
       <div class="nav-actions">
-        <!-- Language Switcher -->
-        <div class="lang-switch" role="group" aria-label="Lingua / Language">
-          <button id="langIT" class="lang-btn active" aria-pressed="true">🇮🇹 IT</button>
-          <button id="langEN" class="lang-btn" aria-pressed="false">🇬🇧 EN</button>
+        <!-- Text-based Segmented Language Toggle -->
+        <div class="lang-selector" role="group" aria-label="Lingua / Language">
+          <button id="langIT" class="lang-pill active" aria-pressed="true">IT</button>
+          <span class="lang-divider">/</span>
+          <button id="langEN" class="lang-pill" aria-pressed="false">EN</button>
         </div>
 
         <!-- Launch App CTA -->
         <a href="https://app.velofit.studio" class="btn btn-primary" id="btnNavLaunch">
-          <span id="btnNavLaunchText">Apri Studio</span> <span class="arrow">↗</span>
+          <span id="btnNavLaunchText">Avvia Studio</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
         </a>
       </div>
     </div>
   </nav>
 
-  <!-- ===================== HERO SECTION ===================== -->
-  <header class="hero">
-    <div class="hero-bg-glow"></div>
+  <!-- ===================== ASYMMETRIC SPLIT HERO ===================== -->
+  <header class="hero-split">
+    <div class="hero-grid-pattern"></div>
     <div class="hero-container">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
-        <span id="heroBadgeText">🦀 Motore Rust WebAssembly • 100% Privacy Locale</span>
+      
+      <!-- Left Column: Editorial & Action -->
+      <div class="hero-content">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span id="heroBadgeText">100% LOCALE IN RUST WEBASSEMBLY • ZERO CLOUD UPLOAD</span>
+        </div>
+
+        <h1 class="hero-heading" id="heroTitle">
+          Precisione Biomeccanica.<br>
+          <span class="text-gradient">Nel tuo Browser.</span>
+        </h1>
+
+        <p class="hero-lead" id="heroSubtitle">
+          Tracciamento cinematico AI a 60 FPS, trigonometria vettoriale del cockpit e protocolli clinici deterministici senza sensori 3D costosi.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="https://app.velofit.studio" class="btn btn-primary btn-lg" id="btnHeroLaunch">
+            <span id="btnHeroLaunchText">Avvia Velofit Studio Gratis</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </a>
+          <a href="#features" class="btn btn-secondary btn-lg" id="btnHeroExplore">
+            <span id="btnHeroExploreText">Specifiche Tecniche</span>
+          </a>
+        </div>
+
+        <!-- Telemetry Spec Chips -->
+        <div class="hero-specs-row">
+          <div class="spec-item">
+            <div class="spec-value">0<span class="spec-unit">ms</span></div>
+            <div class="spec-label" id="mLatency">Latenza Locale in WASM</div>
+          </div>
+          <div class="spec-separator"></div>
+          <div class="spec-item">
+            <div class="spec-value">100<span class="spec-unit">%</span></div>
+            <div class="spec-label" id="mPrivacy">Elaborazione On-Device</div>
+          </div>
+          <div class="spec-separator"></div>
+          <div class="spec-item">
+            <div class="spec-value">6</div>
+            <div class="spec-label" id="mDisciplines">Discipline Bici Supportate</div>
+          </div>
+        </div>
       </div>
 
-      <h1 class="hero-title" id="heroTitle">
-        Precisione Biomeccanica per <span class="text-gradient">Ogni Pedalata</span>
-      </h1>
-
-      <p class="hero-subtitle" id="heroSubtitle">
-        Tracciamento cinematico video con intelligenza artificiale, simulatore vettoriale del cockpit e motore diagnostico clinico. Senza caricare i tuoi video nel cloud e senza costosi sensori 3D.
-      </p>
-
-      <div class="hero-actions">
-        <a href="https://app.velofit.studio" class="btn btn-primary btn-lg" id="btnHeroLaunch">
-          <span id="btnHeroLaunchText">Avvia Velofit Studio Gratis</span> <span class="arrow">↗</span>
-        </a>
-        <a href="#features" class="btn btn-secondary btn-lg" id="btnHeroExplore">
-          <span id="btnHeroExploreText">Esplora le Funzionalità</span> ↓
-        </a>
-      </div>
-
-      <!-- App Interface Interactive Mockup / Preview -->
-      <div class="hero-preview">
-        <div class="preview-window">
-          <div class="preview-header">
-            <div class="window-dots">
-              <span></span><span></span><span></span>
+      <!-- Right Column: Interactive Biomechanical Telemetry Stage -->
+      <div class="hero-stage">
+        <div class="stage-frame">
+          <div class="stage-topbar">
+            <div class="topbar-status">
+              <span class="live-dot"></span>
+              <span>LIVE KINEMATIC STREAM</span>
             </div>
-            <div class="window-title">app.velofit.studio — Video & Kinematics Engine</div>
-            <div class="window-pill">60 FPS • LIVE WASM</div>
+            <div class="topbar-meta">30 FPS • PIXEL 9A PROFILE</div>
           </div>
 
-          <div class="preview-body">
-            <!-- Simulated Video & Pose Landmarks Screen -->
-            <div class="preview-video-box">
-              <svg viewBox="0 0 600 360" class="simulated-pose-svg">
-                <!-- Grid background -->
-                <defs>
-                  <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-                
-                <!-- Bike outline ghost -->
-                <circle cx="120" cy="270" r="50" stroke="#374151" stroke-width="1.5" fill="none" opacity="0.4"/>
-                <circle cx="480" cy="270" r="50" stroke="#374151" stroke-width="1.5" fill="none" opacity="0.4"/>
-                <path d="M120 270 L250 270 L340 150 L420 150 L480 270 M250 270 L320 150 L420 150 M320 150 L310 115 M300 110 L340 110 M420 150 L440 130 L450 140" stroke="#4B5563" stroke-width="2" fill="none" opacity="0.5"/>
+          <div class="stage-viewport">
+            <!-- Vector Pose Overlay on Dark Stage -->
+            <svg viewBox="0 0 540 380" class="stage-svg" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <pattern id="stage-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                  <path d="M 24 0 L 0 0 0 24" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#stage-grid)" />
 
-                <!-- Rider Kinematic Skeleton -->
-                <!-- Ankle to Knee to Hip (Leg at BDC) -->
-                <line x1="260" y1="280" x2="315" y2="205" stroke="#E5B111" stroke-width="3.5" />
-                <line x1="315" y1="205" x2="320" y2="120" stroke="#E5B111" stroke-width="3.5" />
-                <!-- Hip to Shoulder (Torso) -->
-                <line x1="320" y1="120" x2="410" y2="85" stroke="#E5B111" stroke-width="3.5" />
-                <!-- Shoulder to Elbow to Wrist (Arm) -->
-                <line x1="410" y1="85" x2="435" y2="115" stroke="#E5B111" stroke-width="3" />
-                <line x1="435" y1="115" x2="445" y2="135" stroke="#E5B111" stroke-width="3" />
+              <!-- Bike Frame Blueprint Lines -->
+              <g stroke="#334155" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5">
+                <circle cx="90" cy="275" r="45" stroke="#1E293B" stroke-width="2"/>
+                <circle cx="430" cy="275" r="45" stroke="#1E293B" stroke-width="2"/>
+                <path d="M 90 275 L 210 275 L 340 140 L 430 275 M 210 275 L 180 140 L 340 140"/>
+                <path d="M 180 140 L 175 105 M 150 102 L 195 102"/>
+                <path d="M 340 140 L 365 125 L 380 140"/>
+              </g>
 
-                <!-- Joints Dots -->
-                <circle cx="260" cy="280" r="6" fill="#0284C7" stroke="#FFF" stroke-width="2"/>
-                <circle cx="315" cy="205" r="7" fill="#10B981" stroke="#FFF" stroke-width="2"/>
-                <circle cx="320" cy="120" r="6" fill="#0284C7" stroke="#FFF" stroke-width="2"/>
-                <circle cx="410" cy="85" r="6" fill="#0284C7" stroke="#FFF" stroke-width="2"/>
-                <circle cx="435" cy="115" r="6" fill="#10B981" stroke="#FFF" stroke-width="2"/>
-                <circle cx="445" cy="135" r="5" fill="#0284C7" stroke="#FFF" stroke-width="2"/>
+              <!-- Skeleton Bones at Bottom Dead Center (BDC) -->
+              <!-- Leg at BDC -->
+              <line x1="175" y1="110" x2="225" y2="205" stroke="#F59E0B" stroke-width="4" stroke-linecap="round" />
+              <line x1="225" y1="205" x2="232" y2="305" stroke="#F59E0B" stroke-width="4" stroke-linecap="round" />
+              <!-- Torso -->
+              <line x1="175" y1="110" x2="310" y2="78" stroke="#F59E0B" stroke-width="4.5" stroke-linecap="round" />
+              <!-- Arm to Hoods -->
+              <line x1="310" y1="78" x2="352" y2="116" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" />
+              <line x1="352" y1="116" x2="380" y2="138" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" />
 
-                <!-- Angle Arc Knee -->
-                <path d="M 305 218 A 20 20 0 0 1 323 193" fill="none" stroke="#10B981" stroke-width="2"/>
-                <rect x="330" y="195" width="85" height="24" rx="4" fill="rgba(16, 185, 129, 0.9)"/>
-                <text x="372" y="211" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#000" text-anchor="middle">KNEE 143.2°</text>
+              <!-- Landmark Nodes with Laser Glow -->
+              <circle cx="175" cy="110" r="6" fill="#0284C7" stroke="#FFF" stroke-width="2"/> <!-- Hip -->
+              <circle cx="225" cy="205" r="7.5" fill="#10B981" stroke="#FFF" stroke-width="2"/> <!-- Knee -->
+              <circle cx="232" cy="305" r="6" fill="#10B981" stroke="#FFF" stroke-width="2"/> <!-- Ankle -->
+              <circle cx="310" cy="78" r="6" fill="#0284C7" stroke="#FFF" stroke-width="2"/> <!-- Shoulder -->
+              <circle cx="352" cy="116" r="5" fill="#0284C7" stroke="#FFF" stroke-width="1.8"/> <!-- Elbow -->
+              <circle cx="380" cy="138" r="5" fill="#F59E0B" stroke="#FFF" stroke-width="1.8"/> <!-- Wrist -->
 
-                <!-- Angle Arc Torso -->
-                <rect x="345" y="80" width="70" height="22" rx="4" fill="rgba(2, 132, 199, 0.9)"/>
-                <text x="380" y="95" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">TORSO 42°</text>
+              <!-- Knee Angle Tag & Holmes Arc -->
+              <path d="M 215 220 A 24 24 0 0 1 235 190" fill="none" stroke="#10B981" stroke-width="2" stroke-dasharray="2 2"/>
+              
+              <!-- HUD Floating Telemetry Overlay Cards -->
+              <!-- Knee Angle Chip -->
+              <g transform="translate(250, 192)">
+                <rect width="125" height="34" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1.5"/>
+                <text x="12" y="16" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94A3B8" font-weight="600">GINOCCHIO BDC</text>
+                <text x="12" y="27" font-family="'JetBrains Mono', monospace" font-size="13" fill="#10B981" font-weight="700">143.2° OPTIMAL</text>
+              </g>
 
-                <!-- Cadence Banner -->
-                <rect x="20" y="20" width="160" height="40" rx="6" fill="rgba(17, 24, 39, 0.85)" stroke="#374151"/>
-                <text x="32" y="38" font-family="'JetBrains Mono', monospace" font-size="10" fill="#9CA3AF">CADENCE DETECTOR</text>
-                <text x="32" y="53" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" fill="#E5B111">88 RPM • BDC LOCKED</text>
-              </svg>
+              <!-- Torso Angle Chip -->
+              <g transform="translate(200, 48)">
+                <rect width="105" height="28" rx="5" fill="#0F172A" stroke="#0284C7" stroke-width="1.2"/>
+                <text x="10" y="14" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#94A3B8" font-weight="600">BUSTO</text>
+                <text x="10" y="23" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#38BDF8" font-weight="700">42.5° ROAD</text>
+              </g>
+
+              <!-- Cadence Metric Card -->
+              <g transform="translate(20, 20)">
+                <rect width="140" height="52" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+                <text x="12" y="18" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748B" font-weight="600">CADENZA RILEVATA</text>
+                <text x="12" y="38" font-family="'JetBrains Mono', monospace" font-size="18" fill="#F59E0B" font-weight="700">97 RPM</text>
+                <circle cx="120" cy="30" r="4" fill="#10B981"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Bottom Telemetry Readout Strip -->
+          <div class="stage-footer">
+            <div class="readout-group">
+              <span class="readout-label">ALTEZZA SELLA:</span>
+              <span class="readout-val">742 mm</span>
             </div>
-
-            <!-- Preview Live Side Cards -->
-            <div class="preview-side-cards">
-              <div class="preview-card">
-                <div class="card-label" id="prevCardScoreLbl">INDICE DI IDONEITÀ</div>
-                <div class="card-score-box">
-                  <span class="score-val">94%</span>
-                  <span class="score-badge">OTTIMALE</span>
-                </div>
-                <div class="card-bar"><div class="card-bar-fill" style="width:94%;"></div></div>
-              </div>
-
-              <div class="preview-card">
-                <div class="card-label" id="prevCardCockpitLbl">SIMULATORE COCKPIT</div>
-                <div class="cockpit-delta">
-                  <div>Reach: <b style="color:#EF4444">-7.8 mm</b></div>
-                  <div>Stack: <b style="color:#10B981">+0.9 mm</b></div>
-                </div>
-                <div class="card-sub">Attacco 100mm (-6°) vs 110mm</div>
-              </div>
-
-              <div class="preview-card">
-                <div class="card-label" id="prevCardActionLbl">PIANO D'AZIONE CLINICO</div>
-                <div class="action-item-mini">
-                  <span class="step-num">1</span>
-                  <span>Alza sella +14 mm (Target 143° BDC)</span>
-                </div>
-                <div class="action-item-mini">
-                  <span class="step-num">2</span>
-                  <span>Sella larga 145mm con foro centrale</span>
-                </div>
-              </div>
+            <div class="readout-group">
+              <span class="readout-label">COCKPIT REACH:</span>
+              <span class="readout-val text-amber">385 mm (-10 mm)</span>
+            </div>
+            <div class="readout-group">
+              <span class="readout-label">INDICE FIT:</span>
+              <span class="readout-val text-emerald">94% CONFORME</span>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </header>
 
-  <!-- ===================== TRUST METRICS BAR ===================== -->
-  <section class="trust-bar">
-    <div class="trust-container">
-      <div class="trust-metric">
-        <div class="metric-number">0 <span class="metric-unit">ms</span></div>
-        <div class="metric-desc" id="mLatency">Latenza Locale in Rust WASM</div>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-metric">
-        <div class="metric-number">100<span class="metric-unit">%</span></div>
-        <div class="metric-desc" id="mPrivacy">Privacy: Zero Upload Video</div>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-metric">
-        <div class="metric-number">6</div>
-        <div class="metric-desc" id="mDisciplines">Discipline Bici Supportate</div>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-metric">
-        <div class="metric-number">5</div>
-        <div class="metric-desc" id="mStandards">Protocolli Clinici Integrati</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== 6 PILLARS / FEATURES ===================== -->
-  <section class="section" id="features">
+  <!-- ===================== ASYMMETRIC BENTO GRID: 6 PILLARS ===================== -->
+  <section class="section" id="bento">
     <div class="section-container">
-      <div class="section-head">
-        <div class="section-kicker" id="featKicker">TECNOLOGIA & FUNZIONALITÀ</div>
-        <h2 class="section-title" id="featTitle">Gli Strumenti per un Posizionamento Perfetto</h2>
-        <p class="section-subtitle" id="featSubtitle">
-          Un'intera suite biomeccanica professionale condensata in una singola applicazione web reattiva e veloce.
+      <div class="section-header-left">
+        <div class="kicker-tag" id="featKicker">TECNOLOGIA & ARCHITETTURA</div>
+        <h2 class="section-heading" id="featTitle">Costruito per la Massima Accuratezza</h2>
+        <p class="section-subtext" id="featSubtitle">
+          Un approccio ingegneristico al bike fitting: niente congetture empiriche, solo vettori, angoli articolari ed evidenza clinica.
         </p>
       </div>
 
-      <div class="features-grid">
-        <!-- Feature 1 -->
-        <div class="feature-card">
-          <div class="feature-icon">🎥</div>
-          <h3 class="feature-title" id="f1Title">AI Video Landmark Kinematics</h3>
-          <p class="feature-desc" id="f1Desc">
-            Tracciamento in tempo reale a 60 FPS degli angoli articolari: estensione ginocchio, inclinazione busto, apertura spalla e gomito. Calcolo automatico della cadenza e rilevamento millimetrico del punto morto inferiore (BDC).
+      <div class="bento-grid">
+        
+        <!-- BENTO 1 (Wide 2-col span): AI Kinematics & BDC Lock -->
+        <div class="bento-card bento-col-2 bento-primary">
+          <div class="bento-header">
+            <div class="bento-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
+            <span class="bento-pill">CORE KINEMATICS</span>
+          </div>
+          <h3 class="bento-title" id="f1Title">Tracciamento Landmark AI a 60 FPS</h3>
+          <p class="bento-desc" id="f1Desc">
+            MediaPipe Pose traccia in tempo reale 33 coordinate scheletriche. Rileva istantaneamente l'inversione sinusoidale della caviglia per bloccare il fotogramma al Punto Morto Inferiore (BDC) ed estrarre la distensione femoro-rotulea esatta.
+          </p>
+          <div class="bento-metrics-strip">
+            <span class="strip-item">Knee Holmes 140°–146°</span>
+            <span class="strip-item">Torso 40°–45°</span>
+            <span class="strip-item">Gomito 150°–160°</span>
+          </div>
+        </div>
+
+        <!-- BENTO 2 (1 col): 2D Cockpit Vector Trigonometry -->
+        <div class="bento-card">
+          <div class="bento-header">
+            <div class="bento-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2v20M2 12h20M12 12l7 7M12 12l-7-7"/>
+              </svg>
+            </div>
+            <span class="bento-pill">TRIGONOMETRIA</span>
+          </div>
+          <h3 class="bento-title" id="f2Title">Simulatore Vettoriale Cockpit 2D</h3>
+          <p class="bento-desc" id="f2Desc">
+            Risolutore vettoriale bidimensionale che calcola la variazione di Reach e Stack al manubrio in base all'angolo sterzo, distanziali sotto l'attacco, lunghezza e inclinazione dello stem.
           </p>
         </div>
 
-        <!-- Feature 2 -->
-        <div class="feature-card">
-          <div class="feature-icon">📐</div>
-          <h3 class="feature-title" id="f2Title">Simulatore Vettoriale Cockpit 2D</h3>
-          <p class="feature-desc" id="f2Desc">
-            Trigonometria pura a 2 dimensioni che calcola con precisione millimetrica la variazione di Reach e Stack al manubrio in base ad angolo sterzo, spessori, lunghezza e inclinazione dell'attacco manubrio.
+        <!-- BENTO 3 (1 col): Dual Video Synchronizer -->
+        <div class="bento-card">
+          <div class="bento-header">
+            <div class="bento-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="M12 4v16"/>
+                <path d="M7 10l3 2-3 2M17 10l-3 2 3 2"/>
+              </svg>
+            </div>
+            <span class="bento-pill">VALIDAZIONE</span>
+          </div>
+          <h3 class="bento-title" id="f4Title">Player Dual Video Sincronizzato</h3>
+          <p class="bento-desc" id="f4Desc">
+            Confronto affiancato Prima vs Dopo. I due video vengono sincronizzati alla stessa identica fase di pedalata al BDC per validare visivamente l'effetto di ogni regolazione meccanica.
           </p>
         </div>
 
-        <!-- Feature 3 -->
-        <div class="feature-card">
-          <div class="feature-icon">🩺</div>
-          <h3 class="feature-title" id="f3Title">Motore Diagnostico Multi-Disciplina</h3>
-          <p class="feature-desc" id="f3Desc">
-            Algoritmi clinici non distorti tarati su 6 discipline: Strada (Race & Endurance), Gravel, MTB XC, MTB Enduro, Crono/Triathlon e Cicloturismo. Produce un Indice di Idoneità e un piano d'azione prioritario 1-2-3.
+        <!-- BENTO 4 (Wide 2-col span): Deterministic Diagnostic Engine -->
+        <div class="bento-card bento-col-2">
+          <div class="bento-header">
+            <div class="bento-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <span class="bento-pill">EVIDENCE-BASED</span>
+          </div>
+          <h3 class="bento-title" id="f3Title">Motore Diagnostico Deterministico Multi-Disciplina</h3>
+          <p class="bento-desc" id="f3Desc">
+            Alberi decisionali calibrati su Strada (Race & Endurance), Gravel, MTB XC, MTB Enduro, Crono/Triathlon e Cicloturismo. Nessun testo casuale: il motore calcola l'Indice di Idoneità e genera un piano d'azione prioritario 1-2-3 con spostamenti millimetrici lungo l'asse piantone (ratio Retül 1.25 mm/°).
           </p>
         </div>
 
-        <!-- Feature 4 -->
-        <div class="feature-card">
-          <div class="feature-icon">⚖️</div>
-          <h3 class="feature-title" id="f4Title">Player Dual Video Sincronizzato</h3>
-          <p class="feature-desc" id="f4Desc">
-            Confronta i tuoi video di pedalata Prima vs Dopo. Il sistema sincronizza la fase al BDC per visualizzare fianco a fianco la stabilità del bacino e la distensione della gamba a parità di pedalata.
+        <!-- BENTO 5 (1 col): Rust WebAssembly Core -->
+        <div class="bento-card">
+          <div class="bento-header">
+            <div class="bento-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/>
+              </svg>
+            </div>
+            <span class="bento-pill">PRESTAZIONI</span>
+          </div>
+          <h3 class="bento-title" id="f5Title">Core Rust WebAssembly</h3>
+          <p class="bento-desc" id="f5Desc">
+            Le formule matematiche e le tabelle di tolleranza sono compilate in binario bytecode `.wasm`. Calcolo istantaneo a velocità nativa della CPU, completamente offline e protetto.
           </p>
         </div>
 
-        <!-- Feature 5 -->
-        <div class="feature-card">
-          <div class="feature-icon">🦀</div>
-          <h3 class="feature-title" id="f5Title">Core Rust WebAssembly Nativo</h3>
-          <p class="feature-desc" id="f5Desc">
-            Tutte le formule matematiche e gli alberi decisionali sono compilati in binario WebAssembly (`.wasm`). Esecuzione a velocità nativa della CPU, 100% offline e protetto contro ispezione.
+        <!-- BENTO 6 (1 col): Markdown & JSON Dossier -->
+        <div class="bento-card">
+          <div class="bento-header">
+            <div class="bento-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <span class="bento-pill">PORTABILITÀ</span>
+          </div>
+          <h3 class="bento-title" id="f6Title">Dossier Markdown & JSON</h3>
+          <p class="bento-desc" id="f6Desc">
+            Esporta la tua scheda completa in file aperti e standard. Mantieni lo storico di ogni uscita con il Registro Modifiche per monitorare nel tempo l'adattamento biomeccanico.
           </p>
         </div>
 
-        <!-- Feature 6 -->
-        <div class="feature-card">
-          <div class="feature-icon">📋</div>
-          <h3 class="feature-title" id="f6Title">Dossier Markdown & JSON Portabile</h3>
-          <p class="feature-desc" id="f6Desc">
-            Importa ed esporta la tua scheda completa in formato Markdown o JSON. Tieni traccia dei cambiamenti uscita dopo uscita con il Registro Modifiche integrato.
-          </p>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== SCIENCE & LITERATURE ===================== -->
-  <section class="section section-dark" id="science">
+  <!-- ===================== CLINICAL EVIDENCE / SCIENCE ===================== -->
+  <section class="section section-bordered" id="science">
     <div class="section-container">
-      <div class="section-head">
-        <div class="section-kicker" id="sciKicker">RIGORE CLINICO & BIOMECCANICA</div>
-        <h2 class="section-title" id="sciTitle">Basato sulla Letteratura Scientifica</h2>
-        <p class="section-subtitle" id="sciSubtitle">
-          Nessuna congettura empirica casuale. Gli algoritmi di Velofit Studio applicano i protocolli clinici internazionalmente riconosciuti.
+      <div class="section-header-left">
+        <div class="kicker-tag" id="sciKicker">EVIDENZA MEDICO-SPORTIVA</div>
+        <h2 class="section-heading" id="sciTitle">Protocolli Biomeccanici Convalidati</h2>
+        <p class="section-subtext" id="sciSubtitle">
+          Velofit Studio implementa standard clinici estratti dalla letteratura scientifica internazionale di medicina dello sport e biomeccanica applicata.
         </p>
       </div>
 
-      <div class="science-grid">
-        <div class="science-card">
-          <div class="science-tag">PROTOCOLLO HOLMES</div>
-          <h4>Estensione Ginocchio 140°–146° al BDC</h4>
-          <p>
-            Al punto morto inferiore, una flessione inferiore a 138° crea sovraccarico patellofemorale rotuleo, mentre un'estensione oltre 148° stira i muscoli ischiocrurali provocando il basculamento laterale del bacino.
+      <div class="evidence-grid">
+        <div class="evidence-panel">
+          <div class="evidence-header">
+            <span class="evidence-ref">DR. HOLMES ET AL. (1994)</span>
+            <span class="evidence-metric">140°–146°</span>
+          </div>
+          <h4 class="evidence-title">Finestra di Estensione del Ginocchio al BDC</h4>
+          <p class="evidence-text">
+            Un angolo inferiore a 138° al punto morto inferiore raddoppia le forze di compressione sull'articolazione rotulea (patellofemorale). Valori superiori a 148° provocano sovraccarico del bicipite femorale e basculamento del bacino.
           </p>
         </div>
 
-        <div class="science-card">
-          <div class="science-tag">RATIO RETÜL 1.25 MM/°</div>
-          <h4>Regolazione Sella Millimetrica</h4>
-          <p>
-            Per ogni grado di scostamento rispetto all'angolo target dinamico, il sistema calcola uno spostamento sella proporzionale di 1.25 mm lungo l'asse del tubo piantone.
+        <div class="evidence-panel">
+          <div class="evidence-header">
+            <span class="evidence-ref">RETÜL DYNAMIC CAPTURE</span>
+            <span class="evidence-metric">1.25 mm / 1°</span>
+          </div>
+          <h4 class="evidence-title">Ratio di Traslazione Regolazione Sella</h4>
+          <p class="evidence-text">
+            Ogni grado di deviazione rispetto all'angolo dinamico ideale richiede una regolazione proporzionale di 1.25 mm lungo l'asse del tubo sella, garantendo stabilità pelvica senza shock muscolari.
           </p>
         </div>
 
-        <div class="science-card">
-          <div class="science-tag">BODY GEOMETRY (DR. MINKOW)</div>
-          <h4>Larghezza Sella & Ossa Ischiatiche</h4>
-          <p>
-            Sostegno scheletrico calcolato su distanza ischiatica centro-centro +20 mm di margine anatomico, con canale centrale di scarico per preservare il flusso sanguigno del nervo pudendo.
+        <div class="evidence-panel">
+          <div class="evidence-header">
+            <span class="evidence-ref">ANDY PRUITT / BODY GEOMETRY</span>
+            <span class="evidence-metric">+20 mm</span>
+          </div>
+          <h4 class="evidence-title">Larghezza Sella & Ossa Ischiatiche</h4>
+          <p class="evidence-text">
+            Supporto scheletrico calcolato su distanza interischiatica più 20 mm di margine dinamico, con canale perineale di scarico per prevenire la compressione delle arterie pudende e intorpidimenti.
           </p>
         </div>
 
-        <div class="science-card">
-          <div class="science-tag">PHIL BURT & STEVE HOGG</div>
-          <h4>Sospensione Articolare & Tacchette</h4>
-          <p>
-            Cockpit configurato per mantenere gomiti a 150°–165° come ammortizzatori fisiologici, con arretramento tacchetta per ridurre la tensione tendinea sull'Achille e sui polpacci.
+        <div class="evidence-panel">
+          <div class="evidence-header">
+            <span class="evidence-ref">PHIL BURT (BRITISH CYCLING)</span>
+            <span class="evidence-metric">150°–160°</span>
+          </div>
+          <h4 class="evidence-title">Flessione del Gomito & Ammortizzazione</h4>
+          <p class="evidence-text">
+            Gomiti morbidi e sbloccati fungono da ammortizzatori muscolari per dissipare le vibrazioni del telaio, evitando che il carico si trasmetta alla colonna cervicale e ai trapezi.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== HOW IT WORKS ===================== -->
+  <!-- ===================== 3-STEP PROCESS ===================== -->
   <section class="section" id="how-it-works">
     <div class="section-container">
-      <div class="section-head">
-        <div class="section-kicker" id="howKicker">SEMPLICE, PRECISO, IMMEDIATO</div>
-        <h2 class="section-title" id="howTitle">Come Effettuare il Tuo Bike Fit in 3 Passi</h2>
+      <div class="section-header-left">
+        <div class="kicker-tag" id="howKicker">WORKFLOW IN 3 PASSI</div>
+        <h2 class="section-heading" id="howTitle">Dalla Registrazione alla Regolazione</h2>
       </div>
 
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-badge">1</div>
-          <h3 id="step1Title">Registra il Tuo Video</h3>
-          <p id="step1Desc">
-            Posiziona lo smartphone ad altezza anca e registra 20–30 secondi di pedalata sul rullo nella tua posizione abituale.
+      <div class="timeline-row">
+        <div class="timeline-step">
+          <div class="step-counter">01</div>
+          <h3 class="step-title" id="step1Title">Registra la Ripresa</h3>
+          <p class="step-desc" id="step1Desc">
+            Posiziona la fotocamera ad altezza movimento centrale/bacino, perfettamente perpendicolare alla bicicletta sul rullo. Registra 20–30 secondi a cadenza naturale.
           </p>
         </div>
 
-        <div class="step-card">
-          <div class="step-badge">2</div>
-          <h3 id="step2Title">Analisi Automatica AI</h3>
-          <p id="step2Desc">
-            Carica il file in Velofit Studio. L'AI rileva la postura, i punti BDC e TDC, e calcola tutti gli angoli articolari in tempo reale.
+        <div class="timeline-step">
+          <div class="step-counter">02</div>
+          <h3 class="step-title" id="step2Title">Analisi Telemetrica AI</h3>
+          <p class="step-desc" id="step2Desc">
+            Carica il file video locale. Il modello estrae i landmark articolari a 60 FPS, rileva i cicli di pedalata e calcola l'angolo di ginocchio, busto e gomito al BDC.
           </p>
         </div>
 
-        <div class="step-card">
-          <div class="step-badge">3</div>
-          <h3 id="step3Title">Applica il Piano d'Azione</h3>
-          <p id="step3Desc">
-            Ricevi il tuo punteggio e un piano di regolazione 1-2-3 (altezza sella, arretramento, attacco). Applica le modifiche e registra i tuoi feedback.
+        <div class="timeline-step">
+          <div class="step-counter">03</div>
+          <h3 class="step-title" id="step3Title">Esegui le Modifiche</h3>
+          <p class="step-desc" id="step3Desc">
+            Consulta il Piano d'Azione Prioritario 1-2-3. Applica gli spostamenti millimetrici suggeriti per sella e attacco manubrio e annota i riscontri nel registro.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== FAQ ACCORDION ===================== -->
-  <section class="section section-dark" id="faq">
+  <!-- ===================== FAQ ===================== -->
+  <section class="section section-bordered" id="faq">
     <div class="section-container">
-      <div class="section-head">
-        <div class="section-kicker" id="faqKicker">DOMANDE FREQUENTI</div>
-        <h2 class="section-title" id="faqTitle">Tutto Quello che Devi Sapere</h2>
+      <div class="section-header-left">
+        <div class="kicker-tag" id="faqKicker">DOMANDE FREQUENTI</div>
+        <h2 class="section-heading" id="faqTitle">Informazioni & Sicurezza</h2>
       </div>
 
-      <div class="faq-list">
-        <details class="faq-item" open>
-          <summary class="faq-question" id="faq1Q">I miei video o i miei dati personali vengono caricati online?</summary>
-          <div class="faq-answer" id="faq1A">
-            <p><strong>Assolutamente no.</strong> Velofit Studio è un'applicazione 100% client-side. Tutti i calcoli di computer vision (MediaPipe) e il motore di calcolo Rust WebAssembly girano localmente sul tuo processore. Nessun fotogramma o dato personale lascia mai il tuo computer o smartphone.</p>
+      <div class="faq-accordion">
+        <details class="faq-box" open>
+          <summary class="faq-trigger" id="faq1Q">I miei video o i dati personali vengono inviati a server esterni?</summary>
+          <div class="faq-content" id="faq1A">
+            <p><strong>Nessun fotogramma o dato personale lascia mai il tuo dispositivo.</strong> Velofit Studio opera al 100% in locale tramite computer vision (Google MediaPipe) e WebAssembly compilato in Rust. Tutta l'elaborazione avviene sulla CPU/GPU del tuo browser.</p>
           </div>
         </details>
 
-        <details class="faq-item">
-          <summary class="faq-question" id="faq2Q">Ho bisogno di un rullo da allenamento (turbo trainer)?</summary>
-          <div class="faq-answer" id="faq2A">
-            <p>Un rullo (o una cyclette stabile) è l'ideale per registrare una pedalata fluida e costante. Tuttavia, puoi anche utilizzare un cavalletto da officina con ruota sollevata o una ripresa laterale in sicurezza.</p>
+        <details class="faq-box">
+          <summary class="faq-trigger" id="faq2Q">Come devo posizionare la telecamera per la massima precisione?</summary>
+          <div class="faq-content" id="faq2A">
+            <p>Per minimizzare l'errore di parallasse, posiziona lo smartphone a circa 2–3 metri di distanza, ad altezza anca/movimento centrale (circa 80–90 cm da terra) e rigorosamente a 90° perpendicolare rispetto alla linea della bicicletta.</p>
           </div>
         </details>
 
-        <details class="faq-item">
-          <summary class="faq-question" id="faq3Q">Velofit Studio è gratuito?</summary>
-          <div class="faq-answer" id="faq3A">
-            <p>Sì! L'applicazione web è completamente accessibile e gratuita, dotata di importazione/esportazione in Markdown e simulatore del cockpit completo.</p>
+        <details class="faq-box">
+          <summary class="faq-trigger" id="faq3Q">Velofit Studio è accessibile gratuitamente?</summary>
+          <div class="faq-content" id="faq3A">
+            <p>Sì, la suite web è liberamente accessibile, completa di diagnostica automatica, simulatore vettoriale del cockpit e salvataggio dei dossier in formato Markdown e JSON.</p>
           </div>
         </details>
 
-        <details class="faq-item">
-          <summary class="faq-question" id="faq4Q">Quali tipologie di biciclette sono supportate?</summary>
-          <div class="faq-answer" id="faq4A">
-            <p>Tutte le principali discipline: Bici da Corsa (Strada Endurance e Race), Gravel / All-Road, Mountain Bike Cross Country (XC), MTB Trail / Enduro, Crono / Triathlon con prolunghe aero, Ciclocross e Bici Urbana / Cicloturismo.</p>
+        <details class="faq-box">
+          <summary class="faq-trigger" id="faq4Q">Quali tipologie di biciclette sono supportate?</summary>
+          <div class="faq-content" id="faq4A">
+            <p>La suite include target biometrici dedicati per: Bici da Corsa (Strada Race & Endurance), Gravel / All-Road, Mountain Bike Cross Country (XC), MTB Trail / Enduro, Cronometro / Triathlon con prolunghe aero e Bici Urbana / Cicloturismo.</p>
           </div>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- ===================== CTA BANNER ===================== -->
-  <section class="cta-banner">
-    <div class="cta-container">
-      <h2 class="cta-title" id="ctaTitle">Pronto a Trovare la Tua Posizione Ideale?</h2>
-      <p class="cta-subtitle" id="ctaSubtitle">
-        Inizia subito la tua analisi biomeccanica gratuita in meno di 5 minuti.
-      </p>
-      <a href="https://app.velofit.studio" class="btn btn-primary btn-xl" id="btnCtaLaunch">
-        <span id="btnCtaLaunchText">Apri Velofit Studio Ora</span> <span class="arrow">↗</span>
-      </a>
+  <!-- ===================== BOTTOM ACTION BANNER ===================== -->
+  <section class="banner-cta">
+    <div class="banner-container">
+      <div class="banner-card">
+        <div class="banner-badge">ACCESSO DIRETTO</div>
+        <h2 class="banner-title" id="ctaTitle">Pronto a Perfezionare la Tua Posizione?</h2>
+        <p class="banner-desc" id="ctaSubtitle">
+          Avvia la suite biomeccanica nel tuo browser ed effettua l'analisi del tuo video in meno di 5 minuti.
+        </p>
+        <div class="banner-btn-wrap">
+          <a href="https://app.velofit.studio" class="btn btn-primary btn-xl" id="btnCtaLaunch">
+            <span id="btnCtaLaunchText">Avvia Velofit Studio</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer class="footer">
+  <!-- ===================== TECHNICAL FOOTER ===================== -->
+  <footer class="footer-technical">
     <div class="footer-container">
-      <div class="footer-brand">
+      <div class="footer-meta">
         <div class="brand">
-          <div class="brand-logo">🚴</div>
-          <div class="brand-text">
-            <span class="brand-title">VELOFIT STUDIO</span>
+          <div class="brand-glyph">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+              <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 9l3-3 3 3"/>
+              <path d="M12 17.5V14l4-3 2.5 6.5"/>
+            </svg>
           </div>
+          <span class="brand-title">VELOFIT STUDIO</span>
         </div>
-        <p class="footer-tagline" id="footerTagline">Suite Biomeccanica & Posizionamento Bici in WebAssembly.</p>
+        <p class="footer-subtext" id="footerTagline">Suite biomeccanica e simulatore vettoriale del cockpit compilato in Rust WebAssembly.</p>
+        <div class="footer-stack-badges">
+          <span class="stack-badge">RUST WASM</span>
+          <span class="stack-badge">MEDIAPIPE POSE</span>
+          <span class="stack-badge">100% CLIENT-SIDE</span>
+        </div>
       </div>
 
-      <div class="footer-links">
-        <div class="footer-col">
-          <div class="col-title" id="footColApp">Applicazione</div>
-          <a href="https://app.velofit.studio" id="footLinkApp">Apri Web App</a>
-          <a href="#features" id="footLinkFeat">Funzionalità</a>
-          <a href="#science" id="footLinkSci">Letteratura</a>
-        </div>
-        <div class="footer-col">
-          <div class="col-title" id="footColTech">Tecnologia</div>
-          <a href="https://github.com/Ghabs95/vlft-app" target="_blank" rel="noopener">GitHub (App)</a>
-          <a href="https://github.com/Ghabs95/vlft-landing" target="_blank" rel="noopener">GitHub (Landing)</a>
-          <span>Rust + WebAssembly</span>
-          <span>Google MediaPipe</span>
-        </div>
+      <div class="footer-nav-col">
+        <span class="col-head" id="footColApp">Applicazione</span>
+        <a href="https://app.velofit.studio" id="footLinkApp">Avvia Web App</a>
+        <a href="#bento" id="footLinkFeat">Specifiche Cinematica</a>
+        <a href="#science" id="footLinkSci">Protocolli Clinici</a>
+      </div>
+
+      <div class="footer-nav-col">
+        <span class="col-head" id="footColTech">Sviluppo & Open Source</span>
+        <a href="https://github.com/Ghabs95/vlft-app" target="_blank" rel="noopener">GitHub: App Repository</a>
+        <a href="https://github.com/Ghabs95/vlft-landing" target="_blank" rel="noopener">GitHub: Landing Repository</a>
+        <a href="https://app.velofit.studio" target="_blank">app.velofit.studio</a>
       </div>
     </div>
-    
-    <div class="footer-bottom">
-      <p>© 2026 Velofit Studio. All rights reserved.</p>
+
+    <div class="footer-baseline">
+      <div class="baseline-container">
+        <span>© 2026 Velofit Studio. Tutti i diritti riservati.</span>
+        <span class="baseline-legal">Costruito con rigore matematico e biomeccanico per ciclisti ed esperti di posizionamento.</span>
+      </div>
     </div>
   </footer>
 

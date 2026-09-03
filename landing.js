@@ -1,5 +1,5 @@
 /**
- * VELOFIT STUDIO - LANDING PAGE CONTROLLER & I18N
+ * VELOFIT STUDIO — TASTE SKILL LANDING CONTROLLER & LOCALIZATION
  */
 
 const LANDING_I18N = {
@@ -32,11 +32,15 @@ const LANDING_I18N = {
     const isEn = this.currentLang === "en";
     document.documentElement.lang = this.currentLang;
 
-    // Switcher active states
-    document.getElementById("langIT")?.classList.toggle("active", !isEn);
-    document.getElementById("langEN")?.classList.toggle("active", isEn);
-    document.getElementById("langIT")?.setAttribute("aria-pressed", String(!isEn));
-    document.getElementById("langEN")?.setAttribute("aria-pressed", String(isEn));
+    // Segmented toggle active states
+    const btnIT = document.getElementById("langIT");
+    const btnEN = document.getElementById("langEN");
+    if (btnIT && btnEN) {
+      btnIT.classList.toggle("active", !isEn);
+      btnEN.classList.toggle("active", isEn);
+      btnIT.setAttribute("aria-pressed", String(!isEn));
+      btnEN.setAttribute("aria-pressed", String(isEn));
+    }
 
     const dict = this.DICTIONARY[this.currentLang] || this.DICTIONARY["it"];
     for (const [id, text] of Object.entries(dict)) {
@@ -53,155 +57,145 @@ const LANDING_I18N = {
 
   DICTIONARY: {
     it: {
-      navKicker: "STUDIO BIOMECCANICO",
-      navFeatures: "Funzionalità",
-      navHow: "Come Funziona",
-      navScience: "Letteratura",
+      navKicker: "SUITE BIOMECCANICA",
+      navFeatures: "Piattaforma",
+      navBento: "Cinematica",
+      navScience: "Protocolli Clinici",
       navFaq: "FAQ",
-      btnNavLaunchText: "Apri Studio",
+      btnNavLaunchText: "Avvia Studio",
 
-      heroBadgeText: "🦀 Motore Rust WebAssembly • 100% Privacy Locale",
-      heroTitle: "Precisione Biomeccanica per <span class=\"text-gradient\">Ogni Pedalata</span>",
-      heroSubtitle: "Tracciamento cinematico video con intelligenza artificiale, simulatore vettoriale del cockpit e motore diagnostico clinico. Senza caricare i tuoi video nel cloud e senza costosi sensori 3D.",
+      heroBadgeText: "100% LOCALE IN RUST WEBASSEMBLY • ZERO CLOUD UPLOAD",
+      heroTitle: "Precisione Biomeccanica.<br><span class=\"text-gradient\">Nel tuo Browser.</span>",
+      heroSubtitle: "Tracciamento cinematico AI a 60 FPS, trigonometria vettoriale del cockpit e protocolli clinici deterministici.",
       btnHeroLaunchText: "Avvia Velofit Studio Gratis",
-      btnHeroExploreText: "Esplora le Funzionalità",
+      btnHeroExploreText: "Specifiche Tecniche",
 
-      prevCardScoreLbl: "INDICE DI IDONEITÀ",
-      prevCardCockpitLbl: "SIMULATORE COCKPIT",
-      prevCardActionLbl: "PIANO D'AZIONE CLINICO",
-
-      mLatency: "Latenza Locale in Rust WASM",
-      mPrivacy: "Privacy: Zero Upload Video",
+      mLatency: "Latenza Locale in WASM",
+      mPrivacy: "Elaborazione On-Device",
       mDisciplines: "Discipline Bici Supportate",
-      mStandards: "Protocolli Clinici Integrati",
 
-      featKicker: "TECNOLOGIA & FUNZIONALITÀ",
-      featTitle: "Gli Strumenti per un Posizionamento Perfetto",
-      featSubtitle: "Un'intera suite biomeccanica professionale condensata in una singola applicazione web reattiva e veloce.",
+      featKicker: "TECNOLOGIA & ARCHITETTURA",
+      featTitle: "Costruito per la Massima Accuratezza",
+      featSubtitle: "Un approccio ingegneristico al bike fitting: niente congetture empiriche, solo vettori, angoli articolari ed evidenza clinica.",
 
-      f1Title: "AI Video Landmark Kinematics",
-      f1Desc: "Tracciamento in tempo reale a 60 FPS degli angoli articolari: estensione ginocchio, inclinazione busto, apertura spalla e gomito. Calcolo automatico della cadenza e rilevamento millimetrico del punto morto inferiore (BDC).",
+      f1Title: "Tracciamento Landmark AI a 60 FPS",
+      f1Desc: "MediaPipe Pose traccia in tempo reale 33 coordinate scheletriche. Rileva istantaneamente l'inversione sinusoidale della caviglia per bloccare il fotogramma al Punto Morto Inferiore (BDC) ed estrarre la distensione femoro-rotulea esatta.",
       f2Title: "Simulatore Vettoriale Cockpit 2D",
-      f2Desc: "Trigonometria pura a 2 dimensioni che calcola con precisione millimetrica la variazione di Reach e Stack al manubrio in base ad angolo sterzo, spessori, lunghezza e inclinazione dell'attacco manubrio.",
-      f3Title: "Motore Diagnostico Multi-Disciplina",
-      f3Desc: "Algoritmi clinici non distorti tarati su 6 discipline: Strada (Race & Endurance), Gravel, MTB XC, MTB Enduro, Crono/Triathlon e Cicloturismo. Produce un Indice di Idoneità e un piano d'azione prioritario 1-2-3.",
+      f2Desc: "Risolutore vettoriale bidimensionale che calcola la variazione di Reach e Stack al manubrio in base all'angolo sterzo, distanziali sotto l'attacco, lunghezza e inclinazione dello stem.",
+      f3Title: "Motore Diagnostico Deterministico Multi-Disciplina",
+      f3Desc: "Alberi decisionali calibrati su Strada (Race & Endurance), Gravel, MTB XC, MTB Enduro, Crono/Triathlon e Cicloturismo. Nessun testo casuale: il motore calcola l'Indice di Idoneità e genera un piano d'azione prioritario 1-2-3 con spostamenti millimetrici lungo l'asse piantone (ratio Retül 1.25 mm/°).",
       f4Title: "Player Dual Video Sincronizzato",
-      f4Desc: "Confronta i tuoi video di pedalata Prima vs Dopo. Il sistema sincronizza la fase al BDC per visualizzare fianco a fianco la stabilità del bacino e la distensione della gamba a parità di pedalata.",
-      f5Title: "Core Rust WebAssembly Nativo",
-      f5Desc: "Tutte le formule matematiche e gli alberi decisionali sono compilati in binario WebAssembly (`.wasm`). Esecuzione a velocità nativa della CPU, 100% offline e protetto contro ispezione.",
-      f6Title: "Dossier Markdown & JSON Portabile",
-      f6Desc: "Importa ed esporta la tua scheda completa in formato Markdown o JSON. Tieni traccia dei cambiamenti uscita dopo uscita con il Registro Modifiche integrato.",
+      f4Desc: "Confronto affiancato Prima vs Dopo. I due video vengono sincronizzati alla stessa identica fase di pedalata al BDC per validare visivamente l'effetto di ogni regolazione meccanica.",
+      f5Title: "Core Rust WebAssembly",
+      f5Desc: "Le formule matematiche e le tabelle di tolleranza sono compilate in binario bytecode `.wasm`. Calcolo istantaneo a velocità nativa della CPU, completamente offline e protetto.",
+      f6Title: "Dossier Markdown & JSON",
+      f6Desc: "Esporta la tua scheda completa in file aperti e standard. Mantieni lo storico di ogni uscita con il Registro Modifiche per monitorare nel tempo l'adattamento biomeccanico.",
 
-      sciKicker: "RIGORE CLINICO & BIOMECCANICA",
-      sciTitle: "Basato sulla Letteratura Scientifica",
-      sciSubtitle: "Nessuna congettura empirica casuale. Gli algoritmi di Velofit Studio applicano i protocolli clinici internazionalmente riconosciuti.",
+      sciKicker: "EVIDENZA MEDICO-SPORTIVA",
+      sciTitle: "Protocolli Biomeccanici Convalidati",
+      sciSubtitle: "Velofit Studio implementa standard clinici estratti dalla letteratura scientifica internazionale di medicina dello sport e biomeccanica applicata.",
 
-      howKicker: "SEMPLICE, PRECISO, IMMEDIATO",
-      howTitle: "Come Effettuare il Tuo Bike Fit in 3 Passi",
-      step1Title: "Registra il Tuo Video",
-      step1Desc: "Posiziona lo smartphone ad altezza anca e registra 20–30 secondi di pedalata sul rullo nella tua posizione abituale.",
-      step2Title: "Analisi Automatica AI",
-      step2Desc: "Carica il file in Velofit Studio. L'AI rileva la postura, i punti BDC e TDC, e calcola tutti gli angoli articolari in tempo reale.",
-      step3Title: "Applica il Piano d'Azione",
-      step3Desc: "Ricevi il tuo punteggio e un piano di regolazione 1-2-3 (altezza sella, arretramento, attacco). Applica le modifiche e registra i tuoi feedback.",
+      howKicker: "WORKFLOW IN 3 PASSI",
+      howTitle: "Dalla Registrazione alla Regolazione",
+      step1Title: "Registra la Ripresa",
+      step1Desc: "Posiziona la fotocamera ad altezza movimento centrale/bacino, perfettamente perpendicolare alla bicicletta sul rullo. Registra 20–30 secondi a cadenza naturale.",
+      step2Title: "Analisi Telemetrica AI",
+      step2Desc: "Carica il file video locale. Il modello estrae i landmark articolari a 60 FPS, rileva i cicli di pedalata e calcola l'angolo di ginocchio, busto e gomito al BDC.",
+      step3Title: "Esegui le Modifiche",
+      step3Desc: "Consulta il Piano d'Azione Prioritario 1-2-3. Applica gli spostamenti millimetrici suggeriti per sella e attacco manubrio e annota i riscontri nel registro.",
 
       faqKicker: "DOMANDE FREQUENTI",
-      faqTitle: "Tutto Quello che Devi Sapere",
-      faq1Q: "I miei video o i miei dati personali vengono caricati online?",
-      faq1A: "<p><strong>Assolutamente no.</strong> Velofit Studio è un'applicazione 100% client-side. Tutti i calcoli di computer vision (MediaPipe) e il motore di calcolo Rust WebAssembly girano localmente sul tuo processore. Nessun fotogramma o dato personale lascia mai il tuo computer o smartphone.</p>",
-      faq2Q: "Ho bisogno di un rullo da allenamento (turbo trainer)?",
-      faq2A: "<p>Un rullo (o una cyclette stabile) è l'ideale per registrare una pedalata fluida e costante. Tuttavia, puoi anche utilizzare un cavalletto da officina con ruota sollevata o una ripresa laterale in sicurezza.</p>",
-      faq3Q: "Velofit Studio è gratuito?",
-      faq3A: "<p>Sì! L'applicazione web è completamente accessibile e gratuita, dotata di importazione/esportazione in Markdown e simulatore del cockpit completo.</p>",
+      faqTitle: "Informazioni & Sicurezza",
+      faq1Q: "I miei video o i dati personali vengono inviati a server esterni?",
+      faq1A: "<p><strong>Nessun fotogramma o dato personale lascia mai il tuo dispositivo.</strong> Velofit Studio opera al 100% in locale tramite computer vision (Google MediaPipe) e WebAssembly compilato in Rust. Tutta l'elaborazione avviene sulla CPU/GPU del tuo browser.</p>",
+      faq2Q: "Come devo posizionare la telecamera per la massima precisione?",
+      faq2A: "<p>Per minimizzare l'errore di parallasse, posiziona lo smartphone a circa 2–3 metri di distanza, ad altezza anca/movimento centrale (circa 80–90 cm da terra) e rigorosamente a 90° perpendicolare rispetto alla linea della bicicletta.</p>",
+      faq3Q: "Velofit Studio è accessibile gratuitamente?",
+      faq3A: "<p>Sì, la suite web è liberamente accessibile, completa di diagnostica automatica, simulatore vettoriale del cockpit e salvataggio dei dossier in formato Markdown e JSON.</p>",
       faq4Q: "Quali tipologie di biciclette sono supportate?",
-      faq4A: "<p>Tutte le principali discipline: Bici da Corsa (Strada Endurance e Race), Gravel / All-Road, Mountain Bike Cross Country (XC), MTB Trail / Enduro, Crono / Triathlon con prolunghe aero, Ciclocross e Bici Urbana / Cicloturismo.</p>",
+      faq4A: "<p>La suite include target biometrici dedicati per: Bici da Corsa (Strada Race & Endurance), Gravel / All-Road, Mountain Bike Cross Country (XC), MTB Trail / Enduro, Cronometro / Triathlon con prolunghe aero e Bici Urbana / Cicloturismo.</p>",
 
-      ctaTitle: "Pronto a Trovare la Tua Posizione Ideale?",
-      ctaSubtitle: "Inizia subito la tua analisi biomeccanica gratuita in meno di 5 minuti.",
-      btnCtaLaunchText: "Apri Velofit Studio Ora",
+      ctaTitle: "Pronto a Perfezionare la Tua Posizione?",
+      ctaSubtitle: "Avvia la suite biomeccanica nel tuo browser ed effettua l'analisi del tuo video in meno di 5 minuti.",
+      btnCtaLaunchText: "Avvia Velofit Studio",
 
-      footerTagline: "Suite Biomeccanica & Posizionamento Bici in WebAssembly.",
+      footerTagline: "Suite biomeccanica e simulatore vettoriale del cockpit compilato in Rust WebAssembly.",
       footColApp: "Applicazione",
-      footLinkApp: "Apri Web App",
-      footLinkFeat: "Funzionalità",
-      footLinkSci: "Letteratura",
-      footColTech: "Tecnologia"
+      footLinkApp: "Avvia Web App",
+      footLinkFeat: "Specifiche Cinematica",
+      footLinkSci: "Protocolli Clinici",
+      footColTech: "Sviluppo & Open Source"
     },
 
     en: {
-      navKicker: "BIOMECHANICAL STUDIO",
-      navFeatures: "Features",
-      navHow: "How It Works",
-      navScience: "Literature",
+      navKicker: "BIOMECHANICAL SUITE",
+      navFeatures: "Platform",
+      navBento: "Kinematics",
+      navScience: "Clinical Protocols",
       navFaq: "FAQ",
       btnNavLaunchText: "Launch Studio",
 
-      heroBadgeText: "🦀 Powered by Rust WebAssembly • 100% Client-Side Privacy",
-      heroTitle: "Biomechanical Precision on <span class=\"text-gradient\">Every Ride</span>",
-      heroSubtitle: "AI-driven kinematic video pose tracking, 2D vector cockpit trigonometry, and deterministic clinical diagnostics. Zero cloud uploads, zero expensive 3D sensor rigs.",
-      btnHeroLaunchText: "Open Velofit Studio (Free)",
-      btnHeroExploreText: "Explore Features",
+      heroBadgeText: "100% CLIENT-SIDE IN RUST WEBASSEMBLY • ZERO CLOUD UPLOADS",
+      heroTitle: "Biomechanical Precision.<br><span class=\"text-gradient\">Directly in Your Browser.</span>",
+      heroSubtitle: "60 FPS AI pose kinematics, 2D vector cockpit trigonometry, and deterministic clinical diagnostics.",
+      btnHeroLaunchText: "Launch Velofit Studio (Free)",
+      btnHeroExploreText: "Technical Specs",
 
-      prevCardScoreLbl: "FITNESS INDEX",
-      prevCardCockpitLbl: "COCKPIT SIMULATOR",
-      prevCardActionLbl: "CLINICAL ACTION PLAN",
+      mLatency: "Local Latency in WASM",
+      mPrivacy: "On-Device Processing",
+      mDisciplines: "Bike Disciplines Supported",
 
-      mLatency: "Local Latency in Rust WASM",
-      mPrivacy: "Privacy: Zero Video Uploads",
-      mDisciplines: "Cycling Disciplines Supported",
-      mStandards: "Clinical Standards Integrated",
+      featKicker: "TECHNOLOGY & ARCHITECTURE",
+      featTitle: "Engineered for Clinical Accuracy",
+      featSubtitle: "An engineering-first approach to bike fitting: zero guesswork, pure vector trigonometry, joint mechanics, and clinical evidence.",
 
-      featKicker: "TECHNOLOGY & FEATURES",
-      featTitle: "The Toolkit for a Flawless Position",
-      featSubtitle: "A complete professional biomechanical fitting laboratory condensed into a high-speed, responsive web application.",
+      f1Title: "60 FPS AI Landmark Kinematics",
+      f1Desc: "MediaPipe Pose tracks 33 skeletal landmarks in real time. It detects the sinusoidal ankle velocity inversion to phase-lock Bottom Dead Center (BDC) and compute exact knee extension.",
+      f2Title: "2D Vector Cockpit Solver",
+      f2Desc: "Two-dimensional vector trigonometry computing precise handlebar Reach and Stack deltas from steerer angle, spacer stack, stem length, and stem angle.",
+      f3Title: "Deterministic Multi-Discipline Diagnostic Engine",
+      f3Desc: "Decision trees calibrated for Road (Race & Endurance), Gravel, MTB XC, MTB Trail/Enduro, TT/Triathlon, and Urban/Touring. Pure logic: computes Fitness Score and generates a prioritized 1-2-3 Action Plan with millimetric seatpost adjustments (Retül ratio 1.25 mm/°).",
+      f4Title: "Synchronized Dual Video Engine",
+      f4Desc: "Side-by-side Before vs After validation. Both video feeds phase-lock at BDC to visually inspect pelvic stability and leg extension changes under identical load.",
+      f5Title: "Rust WebAssembly Core",
+      f5Desc: "Mathematical formulas and diagnostic matrices are compiled to low-level `.wasm` bytecode. Runs at native CPU speed, 100% offline and tamper-resistant.",
+      f6Title: "Universal Markdown & JSON Dossiers",
+      f6Desc: "Export comprehensive fitting dossiers in open formats. Maintain your Fit Modification Log ride after ride to document long-term biomechanical adaptation.",
 
-      f1Title: "AI Video Landmark Kinematics",
-      f1Desc: "Real-time 60 FPS joint angle tracking: dynamic knee extension, torso angle, shoulder reach, and elbow bend. Automatic cadence calculation and Bottom Dead Center (BDC) lock.",
-      f2Title: "2D Vector Cockpit Simulator",
-      f2Desc: "Pure 2D vector trigonometry calculating millimetric clamp and hood Reach & Stack variations based on steerer angle, spacer stack, stem length, and stem angle.",
-      f3Title: "Multi-Discipline Diagnostic Engine",
-      f3Desc: "Unbiased clinical algorithms tailored across 6 distinct disciplines: Road (Race & Endurance), Gravel, MTB XC, MTB Trail/Enduro, TT/Triathlon, and Urban/Touring. Produces a 1-2-3 Action Plan.",
-      f4Title: "Phase-Locked Dual Video Comparison",
-      f4Desc: "Compare Before vs After pedal strokes. The player phase-locks BDC timing in lockstep to visualize pelvic stability and leg extension side-by-side.",
-      f5Title: "Native Rust WebAssembly Core",
-      f5Desc: "All mathematical rules and diagnostic decision trees are compiled into a high-performance `.wasm` binary bytecode running directly on your CPU with zero cloud lag.",
-      f6Title: "Portable Markdown & JSON Dossiers",
-      f6Desc: "Import and export your position sheet in universal Markdown and JSON formats. Track incremental tweaks over time in the built-in Fit Modification Register.",
+      sciKicker: "SPORTS MEDICINE EVIDENCE",
+      sciTitle: "Validated Biomechanical Protocols",
+      sciSubtitle: "Velofit Studio implements clinical standards derived from peer-reviewed sports medicine and orthopaedic cycling literature.",
 
-      sciKicker: "CLINICAL EVIDENCE & BIOMECHANICS",
-      sciTitle: "Built Upon Scientific Literature",
-      sciSubtitle: "Zero guesswork or arbitrary formulas. Velofit Studio applies internationally validated clinical biomechanical protocols.",
-
-      howKicker: "SIMPLE, ACCURATE, INSTANT",
-      howTitle: "How to Fit Your Bike in 3 Steps",
+      howKicker: "3-STEP WORKFLOW",
+      howTitle: "From Recording to Calibration",
       step1Title: "Record Your Ride",
-      step1Desc: "Place your smartphone camera at hip height and record 20–30 seconds of pedaling on a trainer in your normal riding posture.",
-      step2Title: "Automated AI Analysis",
-      step2Desc: "Load the video into Velofit Studio. The AI tracks landmarks, identifies BDC pedal phases, and extracts joint angles instantly.",
+      step1Desc: "Place the camera at hip/BB height, exactly perpendicular (90°) to the bicycle on a trainer. Record 20–30 seconds at your natural cadence.",
+      step2Title: "AI Telemetry Extraction",
+      step2Desc: "Load the local video file. The neural network extracts 60 FPS skeletal landmarks, detects cadence cycles, and calculates BDC joint angles.",
       step3Title: "Execute the Action Plan",
-      step3Desc: "Receive your Fitness Score and a prioritized 1-2-3 adjustment roadmap (saddle height, setback, stem). Make the tweaks and record feedback.",
+      step3Desc: "Review the prioritized 1-2-3 Action Plan. Apply the millimeter-exact saddle and stem adjustments, then log rider feedback.",
 
       faqKicker: "FREQUENTLY ASKED QUESTIONS",
-      faqTitle: "Everything You Need to Know",
-      faq1Q: "Are my videos or anthropometric data uploaded to any server?",
-      faq1A: "<p><strong>Never.</strong> Velofit Studio is 100% client-side. All MediaPipe computer vision calculations and the Rust WebAssembly binary execute entirely on your device's CPU. No video frames or personal measurements ever leave your browser.</p>",
-      faq2Q: "Do I need a stationary trainer (turbo trainer)?",
-      faq2A: "<p>A stationary trainer or stationary bike is ideal for recording smooth, continuous pedal strokes. However, you can also use a workshop bike stand with the rear wheel elevated or a stable side video.</p>",
-      faq3Q: "Is Velofit Studio completely free?",
-      faq3A: "<p>Yes! The web application is fully accessible, featuring complete Markdown/JSON import/export and the 2D cockpit simulator.</p>",
-      faq4Q: "Which bike types and disciplines are supported?",
-      faq4A: "<p>All major disciplines: Road (Race & Endurance), Gravel / All-Road, Mountain Bike Cross Country (XC), MTB Trail / Enduro, Time Trial / Triathlon with aero extensions, Cyclocross, and Urban / Touring.</p>",
+      faqTitle: "Information & Security",
+      faq1Q: "Are my videos or anthropometric data sent to external servers?",
+      faq1A: "<p><strong>Never. No video frames or personal metrics ever leave your device.</strong> Velofit Studio operates 100% locally via Google MediaPipe and compiled Rust WebAssembly on your browser's CPU/GPU.</p>",
+      faq2Q: "How should I position the camera for maximum accuracy?",
+      faq2A: "<p>To eliminate parallax distortion, place your camera 2–3 meters away, at hip/bottom bracket height (around 80–90 cm from the floor), strictly perpendicular (90°) to the bicycle frame.</p>",
+      faq3Q: "Is Velofit Studio completely free to use?",
+      faq3A: "<p>Yes, the web application is fully accessible, featuring automated clinical diagnostics, 2D vector cockpit solver, and Markdown/JSON export capabilities.</p>",
+      faq4Q: "Which cycling disciplines are supported?",
+      faq4A: "<p>The engine includes dedicated biomechanical targets for: Road (Race & Endurance), Gravel / All-Road, Mountain Bike Cross Country (XC), MTB Trail / Enduro, Time Trial / Triathlon with aero bars, and Urban / Touring.</p>",
 
       ctaTitle: "Ready to Dial In Your Optimal Position?",
-      ctaSubtitle: "Start your free biomechanical analysis in under 5 minutes.",
-      btnCtaLaunchText: "Launch Velofit Studio Now",
+      ctaSubtitle: "Launch the biomechanics suite in your browser and analyze your video in under 5 minutes.",
+      btnCtaLaunchText: "Launch Velofit Studio",
 
-      footerTagline: "Biomechanics & Bike Fitting Suite in WebAssembly.",
+      footerTagline: "Biomechanical suite and 2D vector cockpit solver compiled in Rust WebAssembly.",
       footColApp: "Application",
-      footLinkApp: "Open Web App",
-      footLinkFeat: "Features",
-      footLinkSci: "Literature",
-      footColTech: "Technology"
+      footLinkApp: "Launch Web App",
+      footLinkFeat: "Kinematics Specs",
+      footLinkSci: "Clinical Protocols",
+      footColTech: "Development & Open Source"
     }
   }
 };

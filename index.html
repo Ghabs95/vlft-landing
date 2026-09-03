@@ -174,24 +174,24 @@
               <!-- HUD Floating Telemetry Overlay Cards -->
               <!-- Knee Angle Chip -->
               <g transform="translate(250, 192)">
-                <rect width="125" height="34" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1.5"/>
-                <text x="12" y="16" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94A3B8" font-weight="600">GINOCCHIO BDC</text>
-                <text x="12" y="27" font-family="'JetBrains Mono', monospace" font-size="13" fill="#10B981" font-weight="700">143.2° OPTIMAL</text>
+                <rect width="130" height="34" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1.5"/>
+                <text id="hudKneeLabel" x="12" y="16" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94A3B8" font-weight="600">GINOCCHIO BDC</text>
+                <text id="hudKneeValue" x="12" y="27" font-family="'JetBrains Mono', monospace" font-size="12" fill="#10B981" font-weight="700">143.2° OTTIMALE</text>
               </g>
 
               <!-- Torso Angle Chip -->
               <g transform="translate(200, 48)">
                 <rect width="105" height="28" rx="5" fill="#0F172A" stroke="#0284C7" stroke-width="1.2"/>
-                <text x="10" y="14" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#94A3B8" font-weight="600">BUSTO</text>
-                <text x="10" y="23" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#38BDF8" font-weight="700">42.5° ROAD</text>
+                <text id="hudTorsoLabel" x="10" y="14" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#94A3B8" font-weight="600">BUSTO</text>
+                <text id="hudTorsoValue" x="10" y="23" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#38BDF8" font-weight="700">42.5° ROAD</text>
               </g>
 
               <!-- Cadence Metric Card -->
               <g transform="translate(20, 20)">
-                <rect width="140" height="52" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
-                <text x="12" y="18" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748B" font-weight="600">CADENZA RILEVATA</text>
+                <rect width="145" height="52" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+                <text id="hudCadenceLabel" x="12" y="18" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748B" font-weight="600">CADENZA RILEVATA</text>
                 <text x="12" y="38" font-family="'JetBrains Mono', monospace" font-size="18" fill="#F59E0B" font-weight="700">97 RPM</text>
-                <circle cx="120" cy="30" r="4" fill="#10B981"/>
+                <circle cx="125" cy="30" r="4" fill="#10B981"/>
               </g>
             </svg>
           </div>
@@ -199,16 +199,16 @@
           <!-- Bottom Telemetry Readout Strip -->
           <div class="stage-footer">
             <div class="readout-group">
-              <span class="readout-label">ALTEZZA SELLA:</span>
+              <span class="readout-label" id="hudSaddleLabel">ALTEZZA SELLA:</span>
               <span class="readout-val">742 mm</span>
             </div>
             <div class="readout-group">
-              <span class="readout-label">COCKPIT REACH:</span>
+              <span class="readout-label" id="hudReachLabel">COCKPIT REACH:</span>
               <span class="readout-val text-amber">385 mm (-10 mm)</span>
             </div>
             <div class="readout-group">
-              <span class="readout-label">INDICE FIT:</span>
-              <span class="readout-val text-emerald">94% CONFORME</span>
+              <span class="readout-label" id="hudFitLabel">INDICE FIT:</span>
+              <span class="readout-val text-emerald" id="hudFitVal">94% CONFORME</span>
             </div>
           </div>
         </div>

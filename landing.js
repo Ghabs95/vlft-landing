@@ -74,6 +74,15 @@ const LANDING_I18N = {
       mPrivacy: "Elaborazione On-Device",
       mDisciplines: "Discipline Bici Supportate",
 
+      hudKneeLabel: "GINOCCHIO BDC",
+      hudKneeValue: "143.2° OTTIMALE",
+      hudTorsoLabel: "BUSTO",
+      hudCadenceLabel: "CADENZA RILEVATA",
+      hudSaddleLabel: "ALTEZZA SELLA:",
+      hudReachLabel: "COCKPIT REACH:",
+      hudFitLabel: "INDICE FIT:",
+      hudFitVal: "94% CONFORME",
+
       featKicker: "TECNOLOGIA & ARCHITETTURA",
       featTitle: "Costruito per la Massima Accuratezza",
       featSubtitle: "Un approccio ingegneristico al bike fitting: niente congetture empiriche, solo vettori, angoli articolari ed evidenza clinica.",
@@ -144,6 +153,15 @@ const LANDING_I18N = {
       mLatency: "Local Latency in WASM",
       mPrivacy: "On-Device Processing",
       mDisciplines: "Bike Disciplines Supported",
+
+      hudKneeLabel: "KNEE BDC",
+      hudKneeValue: "143.2° OPTIMAL",
+      hudTorsoLabel: "TORSO",
+      hudCadenceLabel: "DETECTED CADENCE",
+      hudSaddleLabel: "SADDLE HEIGHT:",
+      hudReachLabel: "COCKPIT REACH:",
+      hudFitLabel: "FIT INDEX:",
+      hudFitVal: "94% OPTIMAL",
 
       featKicker: "TECHNOLOGY & ARCHITECTURE",
       featTitle: "Engineered for Clinical Accuracy",

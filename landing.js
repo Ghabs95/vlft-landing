@@ -64,13 +64,13 @@ const LANDING_I18N = {
       navFaq: "FAQ",
       btnNavLaunchText: "Avvia Studio",
 
-      heroBadgeText: "100% LOCALE IN RUST WEBASSEMBLY • ZERO CLOUD UPLOAD",
+      heroBadgeText: "100% SU DISPOSITIVO • PRIVACY TOTALE • ZERO CLOUD UPLOAD",
       heroTitle: "Precisione Biomeccanica.<br><span class=\"text-gradient\">Nel tuo Browser.</span>",
       heroSubtitle: "Tracciamento cinematico AI a 60 FPS, trigonometria vettoriale del cockpit e protocolli clinici deterministici.",
       btnHeroLaunchText: "Avvia Velofit Studio Gratis",
       btnHeroExploreText: "Specifiche Tecniche",
 
-      mLatency: "Latenza Locale in WASM",
+      mLatency: "Elaborazione Istantanea Locale",
       mPrivacy: "Elaborazione On-Device",
       mDisciplines: "Discipline Bici Supportate",
 
@@ -95,8 +95,9 @@ const LANDING_I18N = {
       f3Desc: "Alberi decisionali calibrati su Strada (Race & Endurance), Gravel, MTB XC, MTB Enduro, Crono/Triathlon e Cicloturismo. Nessun testo casuale: il motore calcola l'Indice di Idoneità e genera un piano d'azione prioritario 1-2-3 con spostamenti millimetrici lungo l'asse piantone (ratio Retül 1.25 mm/°).",
       f4Title: "Player Dual Video Sincronizzato",
       f4Desc: "Confronto affiancato Prima vs Dopo. I due video vengono sincronizzati alla stessa identica fase di pedalata al BDC per validare visivamente l'effetto di ogni regolazione meccanica.",
-      f5Title: "Core Rust WebAssembly",
-      f5Desc: "Le formule matematiche e le tabelle di tolleranza sono compilate in binario bytecode `.wasm`. Calcolo istantaneo a velocità nativa della CPU, completamente offline e protetto.",
+      f5Pill: "PRIVACY TOTALE",
+      f5Title: "Elaborazione 100% On-Device",
+      f5Desc: "I calcoli biomeccanici e l'analisi video avvengono in tempo reale direttamente sul tuo computer o smartphone. Nessun filmato viene inviato a server remoti, garantendo velocità istantanea e riservatezza assoluta.",
       f6Title: "Dossier Markdown & JSON",
       f6Desc: "Esporta la tua scheda completa in file aperti e standard. Mantieni lo storico di ogni uscita con il Registro Modifiche per monitorare nel tempo l'adattamento biomeccanico.",
 
@@ -116,7 +117,7 @@ const LANDING_I18N = {
       faqKicker: "DOMANDE FREQUENTI",
       faqTitle: "Informazioni & Sicurezza",
       faq1Q: "I miei video o i dati personali vengono inviati a server esterni?",
-      faq1A: "<p><strong>Nessun fotogramma o dato personale lascia mai il tuo dispositivo.</strong> Velofit Studio opera al 100% in locale tramite computer vision (Google MediaPipe) e WebAssembly compilato in Rust. Tutta l'elaborazione avviene sulla CPU/GPU del tuo browser.</p>",
+      faq1A: "<p><strong>Nessun fotogramma o dato personale lascia mai il tuo dispositivo.</strong> Velofit Studio opera al 100% in locale sul tuo computer o smartphone. L'analisi video e i calcoli biomeccanici vengono elaborati direttamente nel tuo browser: nessun filmato viene salvato, archiviato o trasmesso a server remoti.</p>",
       faq2Q: "Come devo posizionare la telecamera per la massima precisione?",
       faq2A: "<p>Per minimizzare l'errore di parallasse, posiziona lo smartphone a circa 2–3 metri di distanza, ad altezza anca/movimento centrale (circa 80–90 cm da terra) e rigorosamente a 90° perpendicolare rispetto alla linea della bicicletta.</p>",
       faq3Q: "Velofit Studio è accessibile gratuitamente?",
@@ -128,7 +129,7 @@ const LANDING_I18N = {
       ctaSubtitle: "Avvia la suite biomeccanica nel tuo browser ed effettua l'analisi del tuo video in meno di 5 minuti.",
       btnCtaLaunchText: "Avvia Velofit Studio",
 
-      footerTagline: "Suite biomeccanica e simulatore vettoriale del cockpit compilato in Rust WebAssembly.",
+      footerTagline: "Suite biomeccanica e simulatore vettoriale del cockpit con elaborazione 100% on-device.",
       footColApp: "Applicazione",
       footLinkApp: "Avvia Web App",
       footLinkFeat: "Specifiche Cinematica",
@@ -144,13 +145,13 @@ const LANDING_I18N = {
       navFaq: "FAQ",
       btnNavLaunchText: "Launch Studio",
 
-      heroBadgeText: "100% CLIENT-SIDE IN RUST WEBASSEMBLY • ZERO CLOUD UPLOADS",
+      heroBadgeText: "100% ON-DEVICE • COMPLETE PRIVACY • ZERO CLOUD UPLOADS",
       heroTitle: "Biomechanical Precision.<br><span class=\"text-gradient\">Directly in Your Browser.</span>",
       heroSubtitle: "60 FPS AI pose kinematics, 2D vector cockpit trigonometry, and deterministic clinical diagnostics.",
       btnHeroLaunchText: "Launch Velofit Studio (Free)",
       btnHeroExploreText: "Technical Specs",
 
-      mLatency: "Local Latency in WASM",
+      mLatency: "Instant On-Device Processing",
       mPrivacy: "On-Device Processing",
       mDisciplines: "Bike Disciplines Supported",
 
@@ -175,8 +176,9 @@ const LANDING_I18N = {
       f3Desc: "Decision trees calibrated for Road (Race & Endurance), Gravel, MTB XC, MTB Trail/Enduro, TT/Triathlon, and Urban/Touring. Pure logic: computes Fitness Score and generates a prioritized 1-2-3 Action Plan with millimetric seatpost adjustments (Retül ratio 1.25 mm/°).",
       f4Title: "Synchronized Dual Video Engine",
       f4Desc: "Side-by-side Before vs After validation. Both video feeds phase-lock at BDC to visually inspect pelvic stability and leg extension changes under identical load.",
-      f5Title: "Rust WebAssembly Core",
-      f5Desc: "Mathematical formulas and diagnostic matrices are compiled to low-level `.wasm` bytecode. Runs at native CPU speed, 100% offline and tamper-resistant.",
+      f5Pill: "COMPLETE PRIVACY",
+      f5Title: "100% On-Device Processing",
+      f5Desc: "All biomechanical models and video analysis run in real time directly on your computer or phone. Your videos never touch a remote server, guaranteeing instant speed and absolute data confidentiality.",
       f6Title: "Universal Markdown & JSON Dossiers",
       f6Desc: "Export comprehensive fitting dossiers in open formats. Maintain your Fit Modification Log ride after ride to document long-term biomechanical adaptation.",
 
@@ -196,7 +198,7 @@ const LANDING_I18N = {
       faqKicker: "FREQUENTLY ASKED QUESTIONS",
       faqTitle: "Information & Security",
       faq1Q: "Are my videos or anthropometric data sent to external servers?",
-      faq1A: "<p><strong>Never. No video frames or personal metrics ever leave your device.</strong> Velofit Studio operates 100% locally via Google MediaPipe and compiled Rust WebAssembly on your browser's CPU/GPU.</p>",
+      faq1A: "<p><strong>Never. No video frames or personal metrics ever leave your device.</strong> Velofit Studio operates 100% locally on your computer or smartphone. Video processing and biomechanical calculations run directly in your browser: no frames are ever stored, uploaded, or transmitted online.</p>",
       faq2Q: "How should I position the camera for maximum accuracy?",
       faq2A: "<p>To eliminate parallax distortion, place your camera 2–3 meters away, at hip/bottom bracket height (around 80–90 cm from the floor), strictly perpendicular (90°) to the bicycle frame.</p>",
       faq3Q: "Is Velofit Studio completely free to use?",
@@ -208,7 +210,7 @@ const LANDING_I18N = {
       ctaSubtitle: "Launch the biomechanics suite in your browser and analyze your video in under 5 minutes.",
       btnCtaLaunchText: "Launch Velofit Studio",
 
-      footerTagline: "Biomechanical suite and 2D vector cockpit solver compiled in Rust WebAssembly.",
+      footerTagline: "Biomechanical suite and 2D vector cockpit solver running 100% on-device.",
       footColApp: "Application",
       footLinkApp: "Launch Web App",
       footLinkFeat: "Kinematics Specs",

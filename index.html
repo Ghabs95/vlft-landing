@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velofit Studio — Biomechanical Bike Fitting in WebAssembly</title>
+  <title>Velofit Studio — AI Biomechanics & Precision Bike Fitting</title>
   
   <!-- SEO & Social Meta Tags -->
-  <meta name="description" content="Professional bike fitting and biomechanical analysis in your browser. 60 FPS AI video pose kinematics, 2D vector cockpit simulator, and deterministic clinical diagnostics powered by Rust WebAssembly.">
-  <meta name="keywords" content="bike fit, bike fitting, biomechanics, cycling, position, saddle height, knee angle, cockpit simulator, Retul, WebAssembly, MediaPipe">
-  <meta property="og:title" content="Velofit Studio — Precision Bike Fitting in WebAssembly">
+  <meta name="description" content="Professional bike fitting and biomechanical analysis in your browser. 60 FPS AI video pose kinematics, 2D vector cockpit simulator, and deterministic clinical diagnostics. 100% private and on-device.">
+  <meta name="keywords" content="bike fit, bike fitting, biomechanics, cycling, position, saddle height, knee angle, cockpit simulator, Retul, MediaPipe">
+  <meta property="og:title" content="Velofit Studio — Precision Bike Fitting On-Device">
   <meta property="og:description" content="60 FPS AI video pose tracking, 2D vector cockpit trigonometry, and deterministic clinical diagnostics. Zero cloud uploads.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://velofit.studio">
@@ -77,7 +77,7 @@
       <div class="hero-content">
         <div class="status-pill">
           <span class="status-dot"></span>
-          <span id="heroBadgeText">100% LOCALE IN RUST WEBASSEMBLY • ZERO CLOUD UPLOAD</span>
+          <span id="heroBadgeText">100% SU DISPOSITIVO • PRIVACY TOTALE • ZERO CLOUD UPLOAD</span>
         </div>
 
         <h1 class="hero-heading" id="heroTitle">
@@ -105,7 +105,7 @@
         <div class="hero-specs-row">
           <div class="spec-item">
             <div class="spec-value">0<span class="spec-unit">ms</span></div>
-            <div class="spec-label" id="mLatency">Latenza Locale in WASM</div>
+            <div class="spec-label" id="mLatency">Elaborazione Istantanea Locale</div>
           </div>
           <div class="spec-separator"></div>
           <div class="spec-item">
@@ -303,20 +303,19 @@
           </p>
         </div>
 
-        <!-- BENTO 5 (1 col): Rust WebAssembly Core -->
+        <!-- BENTO 5 (1 col): On-Device Privacy & Offline Speed -->
         <div class="bento-card">
           <div class="bento-header">
             <div class="bento-icon-box">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="4" width="16" height="16" rx="2"/>
-                <path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/>
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
             </div>
-            <span class="bento-pill">PRESTAZIONI</span>
+            <span class="bento-pill" id="f5Pill">PRIVACY TOTALE</span>
           </div>
-          <h3 class="bento-title" id="f5Title">Core Rust WebAssembly</h3>
+          <h3 class="bento-title" id="f5Title">Elaborazione 100% On-Device</h3>
           <p class="bento-desc" id="f5Desc">
-            Le formule matematiche e le tabelle di tolleranza sono compilate in binario bytecode `.wasm`. Calcolo istantaneo a velocità nativa della CPU, completamente offline e protetto.
+            I calcoli biomeccanici e l'analisi video avvengono in tempo reale direttamente sul tuo computer o smartphone. Nessun filmato viene inviato a server remoti, garantendo velocità istantanea e riservatezza assoluta.
           </p>
         </div>
 
@@ -450,7 +449,7 @@
         <details class="faq-box" open>
           <summary class="faq-trigger" id="faq1Q">I miei video o i dati personali vengono inviati a server esterni?</summary>
           <div class="faq-content" id="faq1A">
-            <p><strong>Nessun fotogramma o dato personale lascia mai il tuo dispositivo.</strong> Velofit Studio opera al 100% in locale tramite computer vision (Google MediaPipe) e WebAssembly compilato in Rust. Tutta l'elaborazione avviene sulla CPU/GPU del tuo browser.</p>
+            <p><strong>Nessun fotogramma o dato personale lascia mai il tuo dispositivo.</strong> Velofit Studio opera al 100% in locale sul tuo computer o smartphone. L'analisi video e i calcoli biomeccanici vengono elaborati direttamente nel tuo browser: nessun filmato viene salvato, archiviato o trasmesso a server remoti.</p>
           </div>
         </details>
 
@@ -513,11 +512,11 @@
           </div>
           <span class="brand-title">VELOFIT STUDIO</span>
         </div>
-        <p class="footer-subtext" id="footerTagline">Suite biomeccanica e simulatore vettoriale del cockpit compilato in Rust WebAssembly.</p>
+        <p class="footer-subtext" id="footerTagline">Suite biomeccanica e simulatore vettoriale del cockpit con elaborazione 100% on-device.</p>
         <div class="footer-stack-badges">
-          <span class="stack-badge">RUST WASM</span>
-          <span class="stack-badge">MEDIAPIPE POSE</span>
-          <span class="stack-badge">100% CLIENT-SIDE</span>
+          <span class="stack-badge">100% PRIVACY</span>
+          <span class="stack-badge">ZERO CLOUD UPLOADS</span>
+          <span class="stack-badge">OFFLINE READY</span>
         </div>
       </div>
 
